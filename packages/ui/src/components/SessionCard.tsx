@@ -21,8 +21,8 @@ const TRACK_COLORS: Record<string, string> = {
 }
 
 function trackColor(track: string | null): string {
-  if (!track) return 'bg-neutral-300'
-  return TRACK_COLORS[track] ?? 'bg-neutral-300'
+  if (!track) return 'bg-neutral-600'
+  return TRACK_COLORS[track] ?? 'bg-neutral-600'
 }
 
 const TYPE_LABELS: Record<string, string> = {
@@ -44,11 +44,11 @@ export const SessionCard: React.FC<SessionCardProps> = ({
   return (
     <Pressable
       onPress={onPress}
-      className="bg-white border border-neutral-100 rounded-lg p-4 mb-3 shadow-sm active:bg-neutral-50"
+      className="glass glass-border rounded-lg p-4 mb-3 active:bg-glass-strong"
     >
       <View className="flex-row items-start justify-between mb-2">
         <View className="flex-1 mr-3">
-          <Text className="text-h4 text-neutral-900 font-semibold leading-tight" numberOfLines={2}>
+          <Text className="text-h4 text-white font-semibold leading-tight" numberOfLines={2}>
             {session.title}
           </Text>
         </View>
@@ -59,7 +59,7 @@ export const SessionCard: React.FC<SessionCardProps> = ({
             </View>
           )}
           {isBookmarked && (
-            <Text className="text-primary text-lg">🔖</Text>
+            <Text className="text-cyan text-lg">🔖</Text>
           )}
         </View>
       </View>
@@ -70,18 +70,18 @@ export const SessionCard: React.FC<SessionCardProps> = ({
             <Text className="text-xs text-white font-semibold">{session.track}</Text>
           </View>
         )}
-        <View className="bg-neutral-100 rounded-sm px-2 py-0.5">
-          <Text className="text-xs text-neutral-600 font-medium">{TYPE_LABELS[session.type] ?? session.type}</Text>
+        <View className="bg-neutral-700 rounded-sm px-2 py-0.5">
+          <Text className="text-xs text-neutral-300 font-medium">{TYPE_LABELS[session.type] ?? session.type}</Text>
         </View>
       </View>
 
       <View className="flex-row items-center gap-3">
-        <Text className="text-caption text-neutral-500">🕐 {timeLabel}</Text>
-        <Text className="text-caption text-neutral-500">📍 {session.room}</Text>
+        <Text className="text-caption text-neutral-400">🕐 {timeLabel}</Text>
+        <Text className="text-caption text-neutral-400">📍 {session.room}</Text>
       </View>
 
       {speakerNames.length > 0 && (
-        <Text className="text-caption text-neutral-600 mt-1" numberOfLines={1}>
+        <Text className="text-caption text-neutral-300 mt-1" numberOfLines={1}>
           🎤 {speakerNames}
         </Text>
       )}

@@ -14,16 +14,16 @@ export const SpeakerCard: React.FC<SpeakerCardProps> = ({ speaker, onPress }) =>
   return (
     <Pressable
       onPress={onPress}
-      className="flex-row items-center bg-white border border-neutral-100 rounded-lg p-4 mb-3 shadow-sm active:bg-neutral-50"
+      className="flex-row items-center glass glass-border rounded-lg p-4 mb-3 active:bg-glass-strong"
     >
       <SpeakerAvatar photoUrl={speaker.photoUrl} name={speaker.fullName} size="sm" />
       <View className="flex-1 ml-3">
-        <Text className="text-body text-neutral-900 font-semibold">{speaker.fullName}</Text>
-        <Text className="text-caption text-neutral-500 mt-0.5">
+        <Text className="text-body text-white font-semibold">{speaker.fullName}</Text>
+        <Text className="text-caption text-neutral-400 mt-0.5">
           {sessionCount} {sessionCount === 1 ? 'session' : 'sessions'}
         </Text>
       </View>
-      <Text className="text-neutral-400">›</Text>
+      <Text className="text-cyan">›</Text>
     </Pressable>
   )
 }

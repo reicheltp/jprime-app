@@ -1,6 +1,6 @@
 import { Stack } from 'expo-router'
 
-export default function SpeakersLayout() {
+export default function VenueLayout() {
   return (
     <Stack
       screenOptions={{
@@ -18,8 +18,7 @@ export default function SpeakersLayout() {
         },
       }}
     >
-      <Stack.Screen name="index" options={{ title: 'Speakers' }} />
-      <Stack.Screen name="[speakerId]" options={{ title: 'Speaker' }} />
+      <Stack.Screen name="index" options={{ title: 'Venue' }} />
     </Stack>
   )
 }

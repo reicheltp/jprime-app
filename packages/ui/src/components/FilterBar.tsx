@@ -17,7 +17,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({ days, tracks, value, onCha
   const hasActiveFilter = value.day !== null || value.track !== null
 
   return (
-    <View className="bg-white border-b border-neutral-100 py-2">
+    <View className="bg-neutral-800 border-b border-neutral-700 py-2">
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -29,20 +29,20 @@ export const FilterBar: React.FC<FilterBarProps> = ({ days, tracks, value, onCha
             <Pressable
               key={day}
               onPress={() => onChange({ ...value, day: active ? null : day })}
-              className={`px-3 py-1.5 rounded-full border ${
+              className={`px-4 py-2 rounded-full border ${
                 active
                   ? 'bg-primary border-primary'
-                  : 'bg-white border-neutral-200'
+                  : 'bg-neutral-700 border-neutral-600'
               }`}
             >
-              <Text className={`text-sm font-medium ${active ? 'text-white' : 'text-neutral-600'}`}>
+              <Text className={`text-sm font-medium ${active ? 'text-white' : 'text-neutral-300'}`}>
                 {dayLabel(day, i)}
               </Text>
             </Pressable>
           )
         })}
 
-        <View className="w-px h-5 bg-neutral-200" />
+        <View className="w-px h-5 bg-neutral-600" />
 
         {tracks.map((track) => {
           const active = value.track === track
@@ -50,13 +50,13 @@ export const FilterBar: React.FC<FilterBarProps> = ({ days, tracks, value, onCha
             <Pressable
               key={track}
               onPress={() => onChange({ ...value, track: active ? null : track })}
-              className={`px-3 py-1.5 rounded-full border ${
+              className={`px-4 py-2 rounded-full border ${
                 active
                   ? 'bg-cyan border-cyan'
-                  : 'bg-white border-neutral-200'
+                  : 'bg-neutral-700 border-neutral-600'
               }`}
             >
-              <Text className={`text-sm font-medium ${active ? 'text-white' : 'text-neutral-600'}`}>
+              <Text className={`text-sm font-medium ${active ? 'text-white' : 'text-neutral-300'}`}>
                 {track}
               </Text>
             </Pressable>
@@ -65,12 +65,12 @@ export const FilterBar: React.FC<FilterBarProps> = ({ days, tracks, value, onCha
 
         {hasActiveFilter && (
           <>
-            <View className="w-px h-5 bg-neutral-200" />
+            <View className="w-px h-5 bg-neutral-600" />
             <Pressable
               onPress={() => onChange({ day: null, track: null })}
-              className="px-3 py-1.5 rounded-full border border-neutral-200"
+              className="px-4 py-2 rounded-full border border-neutral-600"
             >
-              <Text className="text-sm text-neutral-500">✕ Clear</Text>
+              <Text className="text-sm text-neutral-400">✕ Clear</Text>
             </Pressable>
           </>
         )}

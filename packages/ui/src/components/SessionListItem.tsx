@@ -16,17 +16,17 @@ export const SessionListItem: React.FC<SessionListItemProps> = ({ session, onPre
   return (
     <Pressable
       onPress={onPress}
-      className="flex-row items-center py-3 border-b border-neutral-100 active:bg-neutral-50 px-1"
+      className="flex-row items-center py-3 border-b border-neutral-700 active:bg-neutral-800 px-1 min-h-[44px]"
     >
       <View className="flex-1">
-        <Text className="text-body text-neutral-900 font-medium" numberOfLines={2}>
+        <Text className="text-body text-white font-medium" numberOfLines={2}>
           {session.title}
         </Text>
-        <Text className="text-caption text-neutral-500 mt-0.5">
+        <Text className="text-caption text-neutral-400 mt-0.5">
           🕐 {formatTime(session.startTime)}
         </Text>
       </View>
-      <Text className="text-neutral-400 ml-2">›</Text>
+      <Text className="text-cyan ml-2 text-xl">›</Text>
     </Pressable>
   )
 }

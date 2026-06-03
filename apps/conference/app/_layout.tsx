@@ -1,7 +1,6 @@
-import { Stack } from "expo-router";
+import { NativeTabs } from "expo-router/unstable-native-tabs";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet } from "react-native";
 import {
   useFonts,
   Poppins_400Regular,
@@ -50,74 +49,56 @@ function useLoadedFonts() {
 }
 
 // This is the root layout for the entire app
-// All other layouts inherit from this
-
+// Using NativeTabs for native performance and platform-appropriate UX
 export default function RootLayout() {
   useLoadedFonts();
 
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <StatusBar style="auto" />
-        <Stack
+        <StatusBar style="light" />
+        <NativeTabs
           screenOptions={{
-            headerStyle: styles.header,
-            headerTintColor: "#212529",
-            headerTitleStyle: styles.headerTitle,
-            contentStyle: styles.content,
+            headerStyle: {
+              backgroundColor: "#212529",
+            },
+            headerTintColor: "#FFFFFF",
+            headerTitleStyle: {
+              fontWeight: "700",
+              fontFamily: "Poppins-700",
+              fontSize: 18,
+            },
+            contentStyle: {
+              backgroundColor: "#212529",
+            },
+            tabBarActiveTintColor: "#39CBFB",
+            tabBarInactiveTintColor: "#ADB5BD",
+            tabBarStyle: {
+              backgroundColor: "rgba(255, 255, 255, 0.05)",
+              borderTopColor: "rgba(255, 255, 255, 0.1)",
+            },
           }}
         >
-          <Stack.Screen
-            name="index"
-            options={{
-              title: "JPrime Conference",
-            }}
-          />
-          <Stack.Screen
-            name="(auth)"
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
+          <NativeTabs.Trigger
             name="(schedule)"
             options={{
               title: "Schedule",
             }}
           />
-          <Stack.Screen
+          <NativeTabs.Trigger
             name="(speakers)"
             options={{
               title: "Speakers",
             }}
           />
-          <Stack.Screen
+          <NativeTabs.Trigger
             name="(venue)"
             options={{
               title: "Venue",
             }}
           />
-        </Stack>
+        </NativeTabs>
       </QueryClientProvider>
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  header: {
-    backgroundColor: "#FFFFFF",
-    shadowColor: "rgba(0, 0, 0, 0.1)",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 8,
-    elevation: 4,
-  },
-  headerTitle: {
-    fontWeight: "700",
-    fontFamily: "Poppins-700",
-    fontSize: 18,
-  },
-  content: {
-    backgroundColor: "#FFFFFF",
-  },
-});

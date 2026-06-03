@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, FlatList, Text, ActivityIndicator } from 'react-native'
+import { View, FlatList, Text, ActivityIndicator, RefreshControl } from 'react-native'
 import { router } from 'expo-router'
 import { useSessions, useBookmarks } from '@jprime/api'
 import { filterSessions, deriveFilterOptions } from '@jprime/utils'
@@ -14,17 +14,17 @@ export default function ScheduleScreen() {
 
   if (isLoading) {
     return (
-      <View className="flex-1 justify-center items-center bg-white">
-        <ActivityIndicator size="large" color="#E83283" />
+      <View className="flex-1 justify-center items-center bg-dark">
+        <ActivityIndicator size="large" color="#39CBFB" />
       </View>
     )
   }
 
   if (isError || !sessions) {
     return (
-      <View className="flex-1 justify-center items-center bg-white p-8">
+      <View className="flex-1 justify-center items-center bg-dark p-8">
         <Text className="text-4xl mb-4">⚠️</Text>
-        <Text className="text-body text-neutral-500 text-center mb-6">
+        <Text className="text-body text-neutral-400 text-center mb-6">
           Could not load the schedule. Please try again.
         </Text>
         <EmptyState
@@ -49,7 +49,7 @@ export default function ScheduleScreen() {
   }
 
   return (
-    <View className="flex-1 bg-white">
+    <View className="flex-1 bg-dark">
       <FilterBar days={days} tracks={tracks} value={filter} onChange={setFilter} />
       {filtered.length === 0 ? (
         <EmptyState
@@ -62,6 +62,9 @@ export default function ScheduleScreen() {
           keyExtractor={(s) => s.id}
           renderItem={renderItem}
           contentContainerClassName="px-4 pt-4 pb-8"
+          refreshControl={
+            <RefreshControl refreshing={isLoading} onRefresh={refetch} tintColor="#39CBFB" />
+          }
         />
       )}
     </View>

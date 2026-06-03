@@ -1,16 +1,16 @@
 import { Link, Stack } from "expo-router";
-import { Text, View, Pressable } from "react-native";
+import { Text, View, Pressable, ScrollView } from "react-native";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-// JPrime Design System Button Component
+// JPrime Design System Button Component with proper touch targets
 function Button({ children, variant = "primary", className, ...props }: {
   children: React.ReactNode;
   variant?: "primary" | "secondary" | "glass";
   className?: string;
   [key: string]: any;
 }) {
-  const baseStyles = "rounded-md font-medium transition-all duration-200";
+  const baseStyles = "rounded-md font-medium transition-all duration-200 min-h-[44px] justify-center";
   
   const variantStyles = {
     primary: "bg-primary px-6 py-3 shadow-glow-purple hover:bg-primary-strong active:bg-primary-dark",
@@ -46,12 +46,22 @@ function GlassCard({ children, className, ...props }: {
 
 export default function HomeScreen() {
   return (
-    <View className="flex-1 bg-white">
+    <ScrollView
+      className="flex-1 bg-dark"
+      contentContainerClassName="flex-grow"
+      contentInsetAdjustmentBehavior="automatic"
+    >
       <Stack.Screen
         options={{
           title: "JPrime Conference",
           headerStyle: {
-            backgroundColor: "#FFFFFF",
+            backgroundColor: "#212529",
+          },
+          headerTintColor: "#FFFFFF",
+          headerTitleStyle: {
+            fontWeight: "700",
+            fontFamily: "Poppins-700",
+            fontSize: 18,
           },
         }}
       />
@@ -70,7 +80,7 @@ export default function HomeScreen() {
           </GlassCard>
 
           {/* Tagline */}
-          <Text className="text-body text-center text-neutral-600 mb-8 px-4">
+          <Text className="text-body text-center text-neutral-300 mb-8 px-4">
             The premier technology conference for developers, innovators, and
             thought leaders
           </Text>
@@ -124,11 +134,11 @@ export default function HomeScreen() {
       </View>
 
       {/* Footer */}
-      <View className="p-6 border-t border-neutral-100">
-        <Text className="text-center text-caption text-neutral-400">
+      <View className="p-6 border-t border-neutral-700">
+        <Text className="text-center text-caption text-neutral-500">
           JPrime Conference © 2026 | Powered with ❤️
         </Text>
       </View>
-    </View>
+    </ScrollView>
   );
 }
