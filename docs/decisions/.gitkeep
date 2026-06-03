@@ -1,0 +1,61 @@
+# Architecture Decision Records (ADRs)
+
+This directory contains **Architecture Decision Records** for significant technical decisions made during the project.
+
+## ADR Format
+
+Each ADR should follow this format:
+
+```markdown
+# ADR-[NNN]: [Decision Title]
+
+**Status:** [Proposed/Approved/Deprecated/Superceded]
+**Date:** [YYYY-MM-DD]
+**Author:** [@username]
+
+## Context
+
+[The problem or situation that required a decision]
+
+## Decision
+
+[The chosen solution]
+
+## Consequences
+
+### Positive
+- [Benefit 1]
+- [Benefit 2]
+
+### Negative
+- [Drawback 1]
+- [Drawback 2]
+
+## Alternatives Considered
+
+1. [Alternative 1]
+   - Pros: [benefits]
+   - Cons: [drawbacks]
+   - Reason for rejection: [why not chosen]
+
+2. [Alternative 2]
+   - Pros: [benefits]
+   - Cons: [drawbacks]
+   - Reason for rejection: [why not chosen]
+
+## Related
+
+- [ADR-001](adr-001.md) - [Related decision]
+- [Documentation](link) - [Relevant docs]
+```
+
+## ADR Numbering
+
+ADRs are numbered sequentially starting from 001:
+- ADR-001: First decision
+- ADR-002: Second decision
+- etc.
+
+## Existing ADRs
+
+- [ ] No ADRs yet - create your first ADR!

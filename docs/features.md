@@ -1,0 +1,33 @@
+---
+title: Feature Status Matrix
+description: Current status of all planned features across requirements, design, and tasks phases. Update this file when a spec phase changes status.
+type: feature-matrix
+last_updated: 2026-06-03
+status: active
+---
+
+# Feature Status Matrix
+
+One row per planned feature. Update the status columns as spec phases are approved and features are shipped.
+
+## Status Key
+
+| Symbol | Meaning |
+|--------|---------|
+| — | Not started |
+| `draft` | In progress, not ready |
+| `in-review` | Awaiting human sign-off |
+| `approved` | Finalized and stable |
+| `implemented` | Shipped |
+
+## Features
+
+| ID | Feature | Domain | Requirements | Design | Tasks | Notes |
+|----|---------|--------|-------------|--------|-------|-------|
+| SPEC-001 | _TBD_ | — | — | — | — | First spec not yet created |
+
+---
+
+> **For agents:** Check the `requirements` column before starting implementation work. Only begin coding when requirements are `approved`. Check `tasks` for your specific checklist.
+>
+> **For humans:** Add a row here when creating a new `SPEC-NNN-*.md` file. Keep status columns in sync with the frontmatter `status:` field in each spec file.
