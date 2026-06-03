@@ -1,5 +1,10 @@
 import { describe, it, expect, beforeEach } from 'bun:test'
-import { Cache } from '../cache'
+import { Cache } from './cache'
+
+/**
+ * SPEC-004 Conference Data API
+ * Tests: AC#5, AC#6 (cache behavior for stale/failed data source)
+ */
 
 describe('Cache', () => {
   let cache: Cache

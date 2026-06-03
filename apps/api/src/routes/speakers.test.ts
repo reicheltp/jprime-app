@@ -1,7 +1,12 @@
 import { describe, it, expect, beforeEach } from 'bun:test'
 import { Hono } from 'hono'
-import { registerSpeakerRoutes } from '../speakers'
-import { MockDataProvider, createMockData } from '../../providers/__tests__/MockDataProvider'
+import { registerSpeakerRoutes } from './speakers'
+import { MockDataProvider, createMockData } from '../providers/MockDataProvider'
+
+/**
+ * SPEC-004 Conference Data API
+ * Tests: AC#3, AC#4
+ */
 
 describe('Speaker Routes', () => {
   let app: Hono
@@ -15,7 +20,8 @@ describe('Speaker Routes', () => {
   })
 
   describe('GET /api/v1/speakers', () => {
-    it('returns all speakers', async () => {
+    // SPEC-004 AC#3: returns list of all speakers with required fields
+    it('SPEC-004 AC#3: returns all speakers', async () => {
       const res = await app.request('/api/v1/speakers')
       expect(res.status).toBe(200)
 
@@ -25,7 +31,8 @@ describe('Speaker Routes', () => {
       expect(json.meta.total).toBe(2)
     })
 
-    it('returns speakers with correct shape', async () => {
+    // SPEC-004 AC#3: verify all required fields are present
+    it('SPEC-004 AC#3: returns speakers with all required fields', async () => {
       const res = await app.request('/api/v1/speakers')
       const json = await res.json()
 
@@ -41,7 +48,8 @@ describe('Speaker Routes', () => {
   })
 
   describe('GET /api/v1/speakers/:id', () => {
-    it('returns a specific speaker by id', async () => {
+    // SPEC-004 AC#4: returns full speaker object for id
+    it('SPEC-004 AC#4: returns a specific speaker by id', async () => {
       const res = await app.request('/api/v1/speakers/speaker-jane-doe')
       expect(res.status).toBe(200)
 
@@ -50,7 +58,8 @@ describe('Speaker Routes', () => {
       expect(json.data.fullName).toBe('Jane Doe')
     })
 
-    it('returns 404 for non-existent speaker', async () => {
+    // SPEC-004 AC#4: returns 404 if not found
+    it('SPEC-004 AC#4: returns 404 for non-existent speaker', async () => {
       const res = await app.request('/api/v1/speakers/nonexistent')
       expect(res.status).toBe(404)
 

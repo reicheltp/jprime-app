@@ -1,9 +1,14 @@
 import { describe, it, expect, beforeEach, afterEach } from 'bun:test'
-import { scrapeJprime } from '../jprime'
+import { scrapeJprime } from './jprime'
 import type { Session, Speaker } from '@jprime/types'
 
+/**
+ * SPEC-004 Conference Data API
+ * Tests: Scraper implementation (supports AC#1, AC#3)
+ */
+
 // Mock fetch to return fixture data per hall
-const fixturePath = new URL('../__fixtures__/jprime-sessions.json', import.meta.url).pathname
+const fixturePath = new URL('./__fixtures__/jprime-sessions.json', import.meta.url).pathname
 const allMockSessions = (await import(fixturePath)).default as unknown as Array<{
   hallName: string
   id: number
