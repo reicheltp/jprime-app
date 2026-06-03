@@ -1,0 +1,541 @@
+{
+  "_note": "Sessions marked with confirmed:true have title/time verified via public sources. All others are plausible placeholders based on known speakers and conference structure. To replace with real data, visit jprime.io/agenda in a browser and capture the network response.",
+  "sessions": [
+    {
+      "id": "session-opening-d1",
+      "title": "Opening Keynote: The AI Agents Are Among Us!",
+      "type": "keynote",
+      "track": null,
+      "room": "Java Stage",
+      "day": "2026-06-03",
+      "startTime": "2026-06-03T09:00:00",
+      "endTime": "2026-06-03T09:45:00",
+      "description": "Welcome to jPrime 2026! The AI agents are among us — in our code, our workflows, and our development tools. This keynote sets the stage for two days of deep technical exploration, examining how AI is reshaping what it means to be a Java developer and where the JVM ecosystem is headed.",
+      "speakers": [{ "id": "speaker-591", "name": "Venkat Subramaniam" }]
+    },
+    {
+      "id": "session-253",
+      "_confirmed": true,
+      "title": "Practical MCP Security in Action",
+      "type": "talk",
+      "track": "Java Stage",
+      "room": "Java Stage",
+      "day": "2026-06-03",
+      "startTime": "2026-06-03T10:00:00",
+      "endTime": "2026-06-03T10:50:00",
+      "description": "AI Assistants need to securely authorize and access Model Context Protocol (MCP) servers to safely use imported tools, prompts and resources. This session demonstrates securing MCP servers with OAuth2 and the Quarkus MCP Server extension, walking through real attack scenarios and defenses against prompt injection and token theft.",
+      "speakers": [{ "id": "speaker-glerum", "name": "Willem Jan Glerum" }]
+    },
+    {
+      "id": "session-cay-d1-s1",
+      "title": "Java 25: Pattern Matching, Value Types, and the Language Ahead",
+      "type": "talk",
+      "track": "Future Stage",
+      "room": "Future Stage",
+      "day": "2026-06-03",
+      "startTime": "2026-06-03T10:00:00",
+      "endTime": "2026-06-03T10:50:00",
+      "description": "A deep dive into the Java language features arriving in Java 25 and beyond. We examine record patterns, unnamed variables, string templates, and preview features for value types from Project Valhalla. Expect live coding and honest discussion of what works and what doesn't yet.",
+      "speakers": [{ "id": "speaker-horstmann", "name": "Cay Horstmann" }]
+    },
+    {
+      "id": "session-ws-d1-am",
+      "title": "Hands-On AI Testing with JUnit 5",
+      "type": "workshop",
+      "track": "Workshop",
+      "room": "Workshop Room",
+      "day": "2026-06-03",
+      "startTime": "2026-06-03T10:00:00",
+      "endTime": "2026-06-03T11:55:00",
+      "description": "How do you test an application that calls an LLM? This hands-on workshop covers testing strategies for AI-integrated Java applications: mocking LLM responses for deterministic tests, snapshot testing for AI outputs, contract tests with WireMock, and performance testing for agent workflows. Bring your laptop.",
+      "speakers": [{ "id": "speaker-vandijk", "name": "Marit van Dijk" }]
+    },
+    {
+      "id": "session-254",
+      "_confirmed": true,
+      "title": "Agentic AI Patterns for Enterprise Software",
+      "type": "talk",
+      "track": "Java Stage",
+      "room": "Java Stage",
+      "day": "2026-06-03",
+      "startTime": "2026-06-03T11:05:00",
+      "endTime": "2026-06-03T11:55:00",
+      "description": "Organizations are adopting AI with increasingly complex requirements. Advanced Agentic AI systems — multiple specialized agents working together, each capable of independent reasoning, planning, and tool execution — are emerging as a key architectural pattern. This session explores multi-agent orchestration strategies using Java, LangChain4j, and Quarkus.",
+      "speakers": [{ "id": "speaker-dubois", "name": "Kevin Dubois" }]
+    },
+    {
+      "id": "session-270",
+      "_confirmed": true,
+      "title": "Building Agents with Spring AI",
+      "type": "talk",
+      "track": "Future Stage",
+      "room": "Future Stage",
+      "day": "2026-06-03",
+      "startTime": "2026-06-03T11:05:00",
+      "endTime": "2026-06-03T11:55:00",
+      "description": "Build progressively more capable AI agents using Spring AI, starting with fundamentals and tool calling, then moving into agentic territory with workflow patterns and autonomous agents with recursive advisors and composable skills. Covers the emerging agent protocol landscape including MCP and A2A.",
+      "speakers": [{ "id": "speaker-807", "name": "Sergi Almar" }]
+    },
+    {
+      "id": "session-milen-d1-s3",
+      "title": "From Embeddings to Answers: Practical Vector Search in Java",
+      "type": "talk",
+      "track": "Java Stage",
+      "room": "Java Stage",
+      "day": "2026-06-03",
+      "startTime": "2026-06-03T13:05:00",
+      "endTime": "2026-06-03T13:55:00",
+      "description": "Not all AI is about large language models. This session cuts through the hype and shows how to use embedding models and vector databases directly from Java. We build a semantic search system from scratch, explore embedding spaces, and discuss when vector search beats full-text search.",
+      "speakers": [{ "id": "speaker-9", "name": "Milen Dyankov" }]
+    },
+    {
+      "id": "session-roberto-d1-s3",
+      "title": "MicroProfile 7: Cloud-Native Java Meets the AI Era",
+      "type": "talk",
+      "track": "Future Stage",
+      "room": "Future Stage",
+      "day": "2026-06-03",
+      "startTime": "2026-06-03T13:05:00",
+      "endTime": "2026-06-03T13:55:00",
+      "description": "MicroProfile 7 expands the cloud-native Java toolkit with new specifications for AI integration, improved observability via OpenTelemetry, and updated Config and Health APIs. Walks through new features with real examples and explains the design philosophy behind MicroProfile's approach to enterprise AI.",
+      "speakers": [{ "id": "speaker-cortez", "name": "Roberto Cortez" }]
+    },
+    {
+      "id": "session-ws-d1-pm",
+      "title": "JavaFX Deep Dive: Charts, Controls, and Custom Skins",
+      "type": "workshop",
+      "track": "Workshop",
+      "room": "Workshop Room",
+      "day": "2026-06-03",
+      "startTime": "2026-06-03T13:05:00",
+      "endTime": "2026-06-03T14:55:00",
+      "description": "A two-hour hands-on workshop exploring the full power of JavaFX. Build custom controls from scratch, create a real-time charting dashboard, and skin existing controls with CSS. Participants leave with a working data visualization component ready for their own projects.",
+      "speakers": [{ "id": "speaker-grunwald", "name": "Gerrit Grunwald" }]
+    },
+    {
+      "id": "session-venkat-d1-s4",
+      "title": "The Art of Functional Programming in Modern Java",
+      "type": "talk",
+      "track": "Java Stage",
+      "room": "Java Stage",
+      "day": "2026-06-03",
+      "startTime": "2026-06-03T14:10:00",
+      "endTime": "2026-06-03T15:00:00",
+      "description": "Java's functional programming support has matured significantly. Through live coding we explore lambdas, streams, collectors, and new functional constructs in recent Java versions. We look at real code, common pitfalls, and patterns that make functional Java clean and maintainable.",
+      "speakers": [{ "id": "speaker-591", "name": "Venkat Subramaniam" }]
+    },
+    {
+      "id": "session-cay-d1-s4",
+      "title": "Effective Use of Records, Sealed Classes, and Pattern Matching",
+      "type": "talk",
+      "track": "Future Stage",
+      "room": "Future Stage",
+      "day": "2026-06-03",
+      "startTime": "2026-06-03T14:10:00",
+      "endTime": "2026-06-03T15:00:00",
+      "description": "Records, sealed classes, and pattern matching form a powerful trio for modeling domain data. This session shows how they work together to write more expressive, safer code with less boilerplate — covering data-oriented programming in Java, exhaustive type checks, and deconstruction patterns.",
+      "speakers": [{ "id": "speaker-horstmann", "name": "Cay Horstmann" }]
+    },
+    {
+      "id": "session-marit-d1-s5",
+      "title": "Testing AI-Integrated Java Applications",
+      "type": "talk",
+      "track": "Java Stage",
+      "room": "Java Stage",
+      "day": "2026-06-03",
+      "startTime": "2026-06-03T15:10:00",
+      "endTime": "2026-06-03T15:55:00",
+      "description": "Non-determinism is built into AI systems, making traditional testing strategies insufficient. This session presents practical techniques: golden-file assertions, test doubles to isolate LLM behavior, mutation testing for AI glue code, and how to build confidence in systems you can't fully control.",
+      "speakers": [{ "id": "speaker-vandijk", "name": "Marit van Dijk" }]
+    },
+    {
+      "id": "session-gerrit-d1-s5",
+      "title": "JavaFX in 2026: Building AI-Powered Rich Client Applications",
+      "type": "talk",
+      "track": "Future Stage",
+      "room": "Future Stage",
+      "day": "2026-06-03",
+      "startTime": "2026-06-03T15:10:00",
+      "endTime": "2026-06-03T15:55:00",
+      "description": "JavaFX is alive, well, and more capable than ever. Showcases the latest JavaFX capabilities for rich desktop applications with AI integration: live data dashboards, ML-powered chart anomaly detection, and integrating LLM APIs into JavaFX applications using the Medusa and TilesFX libraries.",
+      "speakers": [{ "id": "speaker-grunwald", "name": "Gerrit Grunwald" }]
+    },
+    {
+      "id": "session-265",
+      "_confirmed": true,
+      "title": "Concurrency Crossroads: Choosing between Reactive Programming and Virtual Threads in Quarkus",
+      "type": "workshop",
+      "track": "Workshop",
+      "room": "Workshop Room",
+      "day": "2026-06-03",
+      "startTime": "2026-06-03T15:20:00",
+      "endTime": "2026-06-03T17:15:00",
+      "description": "Both reactive programming and Project Loom's virtual threads solve concurrency challenges but make very different trade-offs. This workshop walks through real-world examples in Quarkus, measuring performance and resource consumption, and helps you decide which concurrency model fits your use case.",
+      "speakers": [{ "id": "speaker-glerum", "name": "Willem Jan Glerum" }]
+    },
+    {
+      "id": "session-victor-d1-s6",
+      "_confirmed": "partial",
+      "title": "The AI-Augmented Developer: Practices for the New Engineering Era",
+      "type": "talk",
+      "track": "Java Stage",
+      "room": "Java Stage",
+      "day": "2026-06-03",
+      "startTime": "2026-06-03T16:00:00",
+      "endTime": "2026-06-03T16:45:00",
+      "description": "AI tools have changed how we write, review, and reason about code. A practical review of what professional software engineering looks like when AI becomes part of every task: prompt and context engineering, agent orchestration, the MCP ecosystem, and which skills remain irreplaceably human.",
+      "speakers": [{ "id": "speaker-rentea", "name": "Victor Rentea" }]
+    },
+    {
+      "id": "session-roberto-d1-s6",
+      "title": "Quarkus 4.0: What's New and What Matters for Your Stack",
+      "type": "talk",
+      "track": "Future Stage",
+      "room": "Future Stage",
+      "day": "2026-06-03",
+      "startTime": "2026-06-03T16:00:00",
+      "endTime": "2026-06-03T16:45:00",
+      "description": "Quarkus continues to evolve rapidly. Covers the most impactful changes in Quarkus 4.0: improved native compilation times, new Dev Services, enhanced AI extension capabilities with LangChain4j integration, and the path to Jakarta EE 11 compliance.",
+      "speakers": [{ "id": "speaker-cortez", "name": "Roberto Cortez" }]
+    },
+    {
+      "id": "session-keynote-d2",
+      "title": "Closing In on the Perfect Language: The Road from Java to Java's Future",
+      "type": "keynote",
+      "track": null,
+      "room": "Java Stage",
+      "day": "2026-06-04",
+      "startTime": "2026-06-04T09:00:00",
+      "endTime": "2026-06-04T09:45:00",
+      "description": "What will Java look like in 2030? This keynote explores the language roadmap — Value Types from Project Valhalla, Project Panama's foreign APIs, improvements to the module system, and open questions about Java's role in an AI-first world. An honest look at Java's strengths, weaknesses, and the community that keeps it thriving.",
+      "speakers": [{ "id": "speaker-horstmann", "name": "Cay Horstmann" }]
+    },
+    {
+      "id": "session-victor-d2-s1",
+      "title": "Clean Architecture in an AI-Assisted World",
+      "type": "talk",
+      "track": "Java Stage",
+      "room": "Java Stage",
+      "day": "2026-06-04",
+      "startTime": "2026-06-04T10:00:00",
+      "endTime": "2026-06-04T10:50:00",
+      "description": "Clean architecture principles become more important, not less, as AI generates more of our code. Victor Rentea examines the hexagonal architecture pattern, dependency inversion in practice, and how to maintain domain purity when your application relies on AI services that can change behavior unpredictably.",
+      "speakers": [{ "id": "speaker-rentea", "name": "Victor Rentea" }]
+    },
+    {
+      "id": "session-milen-d2-s1",
+      "title": "Run Your Own LLM: Local Inference with Ollama and Java",
+      "type": "talk",
+      "track": "Future Stage",
+      "room": "Future Stage",
+      "day": "2026-06-04",
+      "startTime": "2026-06-04T10:00:00",
+      "endTime": "2026-06-04T10:50:00",
+      "description": "You don't need OpenAI to run an LLM. This session shows how to run open-source models locally using Ollama, integrate them into Java applications, compare performance and quality across models, and decide when local inference beats cloud APIs for your use case.",
+      "speakers": [{ "id": "speaker-9", "name": "Milen Dyankov" }]
+    },
+    {
+      "id": "session-ws-d2-am",
+      "title": "IntelliJ IDEA Power User: AI Features and Hidden Gems",
+      "type": "workshop",
+      "track": "Workshop",
+      "room": "Workshop Room",
+      "day": "2026-06-04",
+      "startTime": "2026-06-04T10:00:00",
+      "endTime": "2026-06-04T11:55:00",
+      "description": "A fast-paced workshop on IntelliJ IDEA's AI-powered features and productivity shortcuts. Covers AI Assistant, live templates, refactoring workflows, and hidden gems that experienced developers still miss. Expect to find at least five features you didn't know existed.",
+      "speakers": [{ "id": "speaker-vandijk", "name": "Marit van Dijk" }]
+    },
+    {
+      "id": "session-roberto-d2-s2",
+      "title": "Observability for AI Microservices with OpenTelemetry",
+      "type": "talk",
+      "track": "Java Stage",
+      "room": "Java Stage",
+      "day": "2026-06-04",
+      "startTime": "2026-06-04T11:05:00",
+      "endTime": "2026-06-04T11:55:00",
+      "description": "Observability is critical for AI-powered microservices where failures are subtle and intermittent. Demonstrates adding OpenTelemetry tracing to LLM calls, instrumenting agent workflows, building meaningful dashboards in Grafana, and debugging multi-hop AI request chains in production.",
+      "speakers": [{ "id": "speaker-cortez", "name": "Roberto Cortez" }]
+    },
+    {
+      "id": "session-gerrit-d2-s2",
+      "title": "TilesFX and Medusa: Building Smart Dashboards with JavaFX",
+      "type": "talk",
+      "track": "Future Stage",
+      "room": "Future Stage",
+      "day": "2026-06-04",
+      "startTime": "2026-06-04T11:05:00",
+      "endTime": "2026-06-04T11:55:00",
+      "description": "TilesFX and Medusa are two of the most popular open-source JavaFX libraries for dashboards and gauges. Gerrit, their author, walks through the design philosophy, demonstrates advanced use cases, and shows how to extend both libraries for custom visualization needs.",
+      "speakers": [{ "id": "speaker-grunwald", "name": "Gerrit Grunwald" }]
+    },
+    {
+      "id": "session-venkat-d2-s3",
+      "title": "Designing with Types: Why Your Code Is Telling You Something",
+      "type": "talk",
+      "track": "Java Stage",
+      "room": "Java Stage",
+      "day": "2026-06-04",
+      "startTime": "2026-06-04T13:05:00",
+      "endTime": "2026-06-04T13:55:00",
+      "description": "The type system is the most powerful tool in a statically-typed language. Shows how to make illegal states unrepresentable in Java, how sealed classes and records enable type-driven design, and how to use the type checker to enforce business rules that would otherwise require runtime validation.",
+      "speakers": [{ "id": "speaker-591", "name": "Venkat Subramaniam" }]
+    },
+    {
+      "id": "session-glerum-d2-s3",
+      "title": "Beyond REST: Event-Driven Services with Reactive Messaging and Quarkus",
+      "type": "talk",
+      "track": "Future Stage",
+      "room": "Future Stage",
+      "day": "2026-06-04",
+      "startTime": "2026-06-04T13:05:00",
+      "endTime": "2026-06-04T13:55:00",
+      "description": "REST is not always the right answer. Compares synchronous REST with event-driven messaging using Quarkus Reactive Messaging and Kafka: when to choose each approach, how to handle backpressure, and how to build resilient distributed systems that don't fall apart under load.",
+      "speakers": [{ "id": "speaker-glerum", "name": "Willem Jan Glerum" }]
+    },
+    {
+      "id": "session-ws-d2-pm",
+      "title": "Building Production-Ready AI Agents with Spring AI",
+      "type": "workshop",
+      "track": "Workshop",
+      "room": "Workshop Room",
+      "day": "2026-06-04",
+      "startTime": "2026-06-04T13:05:00",
+      "endTime": "2026-06-04T14:55:00",
+      "description": "Build a production-ready AI agent from scratch using Spring AI. Covers tool definitions, conversation memory, streaming responses, testing strategies, and deploying your agent to cloud. Participants leave with a working Spring Boot agent application.",
+      "speakers": [{ "id": "speaker-807", "name": "Sergi Almar" }]
+    },
+    {
+      "id": "session-dubois-d2-s4",
+      "title": "A2A Protocol: Making AI Agents Collaborate at Enterprise Scale",
+      "type": "talk",
+      "track": "Java Stage",
+      "room": "Java Stage",
+      "day": "2026-06-04",
+      "startTime": "2026-06-04T14:10:00",
+      "endTime": "2026-06-04T15:00:00",
+      "description": "The Agent-to-Agent (A2A) protocol enables AI agents to discover, communicate with, and orchestrate other agents. Examines the A2A specification, shows how to implement A2A-compatible Java agents using LangChain4j and Quarkus, and explores real-world patterns for multi-agent enterprise systems.",
+      "speakers": [{ "id": "speaker-dubois", "name": "Kevin Dubois" }]
+    },
+    {
+      "id": "session-milen-d2-s4",
+      "title": "RAG in Java: Building Knowledge-Grounded AI Applications",
+      "type": "talk",
+      "track": "Future Stage",
+      "room": "Future Stage",
+      "day": "2026-06-04",
+      "startTime": "2026-06-04T14:10:00",
+      "endTime": "2026-06-04T15:00:00",
+      "description": "Retrieval-Augmented Generation (RAG) grounds LLM responses in your own data. Covers the complete RAG pipeline in Java: document chunking, embedding generation, vector storage with Pinecone, and query-time retrieval. Discusses common failure modes and tuning strategies for production RAG systems.",
+      "speakers": [{ "id": "speaker-9", "name": "Milen Dyankov" }]
+    },
+    {
+      "id": "session-cay-d2-s5",
+      "title": "Java Generics: The Good Parts and the Dark Corners",
+      "type": "talk",
+      "track": "Java Stage",
+      "room": "Java Stage",
+      "day": "2026-06-04",
+      "startTime": "2026-06-04T15:10:00",
+      "endTime": "2026-06-04T15:55:00",
+      "description": "Java generics have hidden power and surprising traps. Covers wildcard types, use-site vs. declaration-site variance, type erasure implications, and how the new pattern matching features interact with generics. Includes a practical guide to reading and writing complex generic signatures without losing your sanity.",
+      "speakers": [{ "id": "speaker-horstmann", "name": "Cay Horstmann" }]
+    },
+    {
+      "id": "session-victor-d2-s5",
+      "title": "Hexagonal Architecture in Practice: Domain Purity with AI Boundaries",
+      "type": "talk",
+      "track": "Future Stage",
+      "room": "Future Stage",
+      "day": "2026-06-04",
+      "startTime": "2026-06-04T15:10:00",
+      "endTime": "2026-06-04T15:55:00",
+      "description": "Hexagonal architecture (ports and adapters) keeps your domain model free from infrastructure concerns. Shows how to apply this pattern in Java applications that integrate AI: where to put the AI boundary, how to write testable AI use cases, and how to swap AI providers without touching your domain.",
+      "speakers": [{ "id": "speaker-rentea", "name": "Victor Rentea" }]
+    },
+    {
+      "id": "session-ws-d2-late",
+      "title": "LangChain4j Workshop: Build a RAG Application from Scratch",
+      "type": "workshop",
+      "track": "Workshop",
+      "room": "Workshop Room",
+      "day": "2026-06-04",
+      "startTime": "2026-06-04T15:20:00",
+      "endTime": "2026-06-04T17:15:00",
+      "description": "Build a complete Retrieval-Augmented Generation (RAG) application from scratch using LangChain4j. Covers embedding pipeline setup, integration with a vector database, document ingestion, query handling, and evaluation of RAG quality. No prior LangChain4j experience required.",
+      "speakers": [{ "id": "speaker-dubois", "name": "Kevin Dubois" }]
+    },
+    {
+      "id": "session-marit-d2-s6",
+      "title": "Shift-Left Testing: From AI Code Review to Mutation Testing",
+      "type": "talk",
+      "track": "Java Stage",
+      "room": "Java Stage",
+      "day": "2026-06-04",
+      "startTime": "2026-06-04T16:05:00",
+      "endTime": "2026-06-04T16:50:00",
+      "description": "Shifting testing left means finding bugs earlier and cheaper. Covers AI-assisted code review strategies, mutation testing with PIT in Java projects, and how to build a testing culture that catches AI-generated code defects before they reach production.",
+      "speakers": [{ "id": "speaker-vandijk", "name": "Marit van Dijk" }]
+    },
+    {
+      "id": "session-roberto-d2-s6",
+      "title": "Securing Your AI Stack: OAuth2, JWT, and Trust Boundaries",
+      "type": "talk",
+      "track": "Future Stage",
+      "room": "Future Stage",
+      "day": "2026-06-04",
+      "startTime": "2026-06-04T16:05:00",
+      "endTime": "2026-06-04T16:50:00",
+      "description": "AI endpoints need the same security attention as any other API. Covers OAuth2 and JWT for securing AI agent APIs, token validation, scoping agent permissions, protecting against prompt injection attacks, and audit logging for AI interactions in production systems.",
+      "speakers": [{ "id": "speaker-cortez", "name": "Roberto Cortez" }]
+    },
+    {
+      "id": "session-closing-d2",
+      "title": "Closing Keynote: What We've Built and Where We're Going",
+      "type": "keynote",
+      "track": null,
+      "room": "Java Stage",
+      "day": "2026-06-04",
+      "startTime": "2026-06-04T17:05:00",
+      "endTime": "2026-06-04T17:30:00",
+      "description": "Two days, 33 sessions, and a clear signal: the Java ecosystem is rising to the AI challenge. We reflect on the themes that emerged, highlight the ideas worth taking home, and look at what the jPrime community is building next.",
+      "speakers": [{ "id": "speaker-591", "name": "Venkat Subramaniam" }]
+    }
+  ],
+  "speakers": [
+    {
+      "id": "speaker-591",
+      "firstName": "Venkat",
+      "lastName": "Subramaniam",
+      "fullName": "Venkat Subramaniam",
+      "bio": "Dr. Venkat Subramaniam is an award-winning author, founder of Agile Developer, Inc., and an adjunct faculty at the University of Houston. He has trained and mentored tens of thousands of software developers in the US, Canada, Europe, and Asia, and is a regularly-invited speaker at international conferences. He is a Java Champion and the author of several books including \"Programming Kotlin\" and \"Functional Programming in Java\".",
+      "photoUrl": null,
+      "sessions": [
+        { "id": "session-opening-d1", "title": "Opening Keynote: The AI Agents Are Among Us!", "day": "2026-06-03", "startTime": "2026-06-03T09:00:00" },
+        { "id": "session-venkat-d1-s4", "title": "The Art of Functional Programming in Modern Java", "day": "2026-06-03", "startTime": "2026-06-03T14:10:00" },
+        { "id": "session-venkat-d2-s3", "title": "Designing with Types: Why Your Code Is Telling You Something", "day": "2026-06-04", "startTime": "2026-06-04T13:05:00" },
+        { "id": "session-closing-d2", "title": "Closing Keynote: What We've Built and Where We're Going", "day": "2026-06-04", "startTime": "2026-06-04T17:05:00" }
+      ]
+    },
+    {
+      "id": "speaker-horstmann",
+      "firstName": "Cay",
+      "lastName": "Horstmann",
+      "fullName": "Cay Horstmann",
+      "bio": "Cay Horstmann is a professor of computer science at San Jose State University and the author of \"Core Java\", a widely used Java textbook now in its 13th edition. He is a Java Champion known for his deep knowledge of Java language features, clear explanations, and honest assessments of what works and what doesn't.",
+      "photoUrl": null,
+      "sessions": [
+        { "id": "session-cay-d1-s1", "title": "Java 25: Pattern Matching, Value Types, and the Language Ahead", "day": "2026-06-03", "startTime": "2026-06-03T10:00:00" },
+        { "id": "session-cay-d1-s4", "title": "Effective Use of Records, Sealed Classes, and Pattern Matching", "day": "2026-06-03", "startTime": "2026-06-03T14:10:00" },
+        { "id": "session-keynote-d2", "title": "Closing In on the Perfect Language: The Road from Java to Java's Future", "day": "2026-06-04", "startTime": "2026-06-04T09:00:00" },
+        { "id": "session-cay-d2-s5", "title": "Java Generics: The Good Parts and the Dark Corners", "day": "2026-06-04", "startTime": "2026-06-04T15:10:00" }
+      ]
+    },
+    {
+      "id": "speaker-grunwald",
+      "firstName": "Gerrit",
+      "lastName": "Grunwald",
+      "fullName": "Gerrit Grunwald",
+      "bio": "Gerrit Grunwald is a software engineer and Java Champion known for his work on JavaFX, data visualization, and open source libraries including Medusa and TilesFX. He is a prolific creator of JavaFX components and speaks regularly at Java conferences worldwide. His GitHub handle is HanSolo.",
+      "photoUrl": null,
+      "sessions": [
+        { "id": "session-ws-d1-pm", "title": "JavaFX Deep Dive: Charts, Controls, and Custom Skins", "day": "2026-06-03", "startTime": "2026-06-03T13:05:00" },
+        { "id": "session-gerrit-d1-s5", "title": "JavaFX in 2026: Building AI-Powered Rich Client Applications", "day": "2026-06-03", "startTime": "2026-06-03T15:10:00" },
+        { "id": "session-gerrit-d2-s2", "title": "TilesFX and Medusa: Building Smart Dashboards with JavaFX", "day": "2026-06-04", "startTime": "2026-06-04T11:05:00" }
+      ]
+    },
+    {
+      "id": "speaker-9",
+      "firstName": "Milen",
+      "lastName": "Dyankov",
+      "fullName": "Milen Dyankov",
+      "bio": "Milen Dyankov is a Developer Advocate at Pinecone, a vector database company. Known as 'The Vector Whisperer', he dedicates his work to helping Java developers understand AI and ML concepts through practical, grounded demonstrations — breaking down AI buzzwords into familiar components developers already know.",
+      "photoUrl": null,
+      "sessions": [
+        { "id": "session-milen-d1-s3", "title": "From Embeddings to Answers: Practical Vector Search in Java", "day": "2026-06-03", "startTime": "2026-06-03T13:05:00" },
+        { "id": "session-milen-d2-s1", "title": "Run Your Own LLM: Local Inference with Ollama and Java", "day": "2026-06-04", "startTime": "2026-06-04T10:00:00" },
+        { "id": "session-milen-d2-s4", "title": "RAG in Java: Building Knowledge-Grounded AI Applications", "day": "2026-06-04", "startTime": "2026-06-04T14:10:00" }
+      ]
+    },
+    {
+      "id": "speaker-rentea",
+      "firstName": "Victor",
+      "lastName": "Rentea",
+      "fullName": "Victor Rentea",
+      "bio": "Victor Rentea is a Java Champion and independent trainer specializing in clean code, software design, testing, and modern Java development practices. He is a passionate community speaker known for his energetic and practical presentations, and leads a growing community of developers dedicated to craftsmanship.",
+      "photoUrl": null,
+      "sessions": [
+        { "id": "session-victor-d1-s6", "title": "The AI-Augmented Developer: Practices for the New Engineering Era", "day": "2026-06-03", "startTime": "2026-06-03T16:00:00" },
+        { "id": "session-victor-d2-s1", "title": "Clean Architecture in an AI-Assisted World", "day": "2026-06-04", "startTime": "2026-06-04T10:00:00" },
+        { "id": "session-victor-d2-s5", "title": "Hexagonal Architecture in Practice: Domain Purity with AI Boundaries", "day": "2026-06-04", "startTime": "2026-06-04T15:10:00" }
+      ]
+    },
+    {
+      "id": "speaker-cortez",
+      "firstName": "Roberto",
+      "lastName": "Cortez",
+      "fullName": "Roberto Cortez",
+      "bio": "Roberto Cortez is a Java Champion, Jakarta EE committer, and MicroProfile contributor. He is an expert in Quarkus, cloud-native Java development, and observability, and regularly contributes to multiple open source Java projects. He runs the Coimbra JUG in Portugal.",
+      "photoUrl": null,
+      "sessions": [
+        { "id": "session-roberto-d1-s3", "title": "MicroProfile 7: Cloud-Native Java Meets the AI Era", "day": "2026-06-03", "startTime": "2026-06-03T13:05:00" },
+        { "id": "session-roberto-d1-s6", "title": "Quarkus 4.0: What's New and What Matters for Your Stack", "day": "2026-06-03", "startTime": "2026-06-03T16:00:00" },
+        { "id": "session-roberto-d2-s2", "title": "Observability for AI Microservices with OpenTelemetry", "day": "2026-06-04", "startTime": "2026-06-04T11:05:00" },
+        { "id": "session-roberto-d2-s6", "title": "Securing Your AI Stack: OAuth2, JWT, and Trust Boundaries", "day": "2026-06-04", "startTime": "2026-06-04T16:05:00" }
+      ]
+    },
+    {
+      "id": "speaker-vandijk",
+      "firstName": "Marit",
+      "lastName": "van Dijk",
+      "fullName": "Marit van Dijk",
+      "bio": "Marit van Dijk is a Developer Advocate at JetBrains, working on IntelliJ IDEA. She is passionate about software quality, developer tooling, and testing practices. A regular speaker at Java and testing conferences, she focuses on making developers more productive and their codebases more reliable.",
+      "photoUrl": null,
+      "sessions": [
+        { "id": "session-ws-d1-am", "title": "Hands-On AI Testing with JUnit 5", "day": "2026-06-03", "startTime": "2026-06-03T10:00:00" },
+        { "id": "session-marit-d1-s5", "title": "Testing AI-Integrated Java Applications", "day": "2026-06-03", "startTime": "2026-06-03T15:10:00" },
+        { "id": "session-ws-d2-am", "title": "IntelliJ IDEA Power User: AI Features and Hidden Gems", "day": "2026-06-04", "startTime": "2026-06-04T10:00:00" },
+        { "id": "session-marit-d2-s6", "title": "Shift-Left Testing: From AI Code Review to Mutation Testing", "day": "2026-06-04", "startTime": "2026-06-04T16:05:00" }
+      ]
+    },
+    {
+      "id": "speaker-807",
+      "firstName": "Sergi",
+      "lastName": "Almar",
+      "fullName": "Sergi Almar",
+      "bio": "Sergi Almar is a seasoned software engineer specializing in the JVM and the Spring ecosystem. As a certified Spring instructor, he delivers training and assists clients in designing effective Spring solutions. He is an active voice in the Spring community and a regular conference speaker across Europe.",
+      "photoUrl": null,
+      "sessions": [
+        { "id": "session-270", "title": "Building Agents with Spring AI", "day": "2026-06-03", "startTime": "2026-06-03T11:05:00" },
+        { "id": "session-ws-d2-pm", "title": "Building Production-Ready AI Agents with Spring AI", "day": "2026-06-04", "startTime": "2026-06-04T13:05:00" }
+      ]
+    },
+    {
+      "id": "speaker-glerum",
+      "firstName": "Willem Jan",
+      "lastName": "Glerum",
+      "fullName": "Willem Jan Glerum",
+      "bio": "Willem Jan Glerum is a software engineer specializing in Quarkus, cloud-native Java, security, and reactive programming. He is a contributor to the Quarkus MCP Server extension and frequently presents on the intersection of Java, AI integration, and modern security practices.",
+      "photoUrl": null,
+      "sessions": [
+        { "id": "session-253", "title": "Practical MCP Security in Action", "day": "2026-06-03", "startTime": "2026-06-03T10:00:00" },
+        { "id": "session-265", "title": "Concurrency Crossroads: Choosing between Reactive Programming and Virtual Threads in Quarkus", "day": "2026-06-03", "startTime": "2026-06-03T15:20:00" },
+        { "id": "session-glerum-d2-s3", "title": "Beyond REST: Event-Driven Services with Reactive Messaging and Quarkus", "day": "2026-06-04", "startTime": "2026-06-04T13:05:00" }
+      ]
+    },
+    {
+      "id": "speaker-dubois",
+      "firstName": "Kevin",
+      "lastName": "Dubois",
+      "fullName": "Kevin Dubois",
+      "bio": "Kevin Dubois is a software engineer and advocate for cloud-native Java development. He specializes in AI agent patterns, multi-agent orchestration, and enterprise Java frameworks including Quarkus and LangChain4j. He is an active contributor to Quarkus and regularly speaks at JVM conferences.",
+      "photoUrl": null,
+      "sessions": [
+        { "id": "session-254", "title": "Agentic AI Patterns for Enterprise Software", "day": "2026-06-03", "startTime": "2026-06-03T11:05:00" },
+        { "id": "session-dubois-d2-s4", "title": "A2A Protocol: Making AI Agents Collaborate at Enterprise Scale", "day": "2026-06-04", "startTime": "2026-06-04T14:10:00" },
+        { "id": "session-ws-d2-late", "title": "LangChain4j Workshop: Build a RAG Application from Scratch", "day": "2026-06-04", "startTime": "2026-06-04T15:20:00" }
+      ]
+    }
+  ]
+}

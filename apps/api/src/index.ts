@@ -3,15 +3,13 @@ import { registerCors } from './middleware/cors'
 import { registerSessionRoutes } from './routes/sessions'
 import { registerSpeakerRoutes } from './routes/speakers'
 import { registerHealthRoute } from './routes/health'
-import { MockDataProvider } from './providers/MockDataProvider'
+import { JsonDataProvider } from './providers/JsonDataProvider'
 import { Cache } from './providers/cache'
 
 const app = new Hono()
 const cache = new Cache()
 
-// Use MockDataProvider until jprime.io scraper is implemented
-// To switch: import ScraperProvider and replace below
-const provider = new MockDataProvider()
+const provider = new JsonDataProvider()
 
 registerCors(app)
 registerHealthRoute(app, cache)
