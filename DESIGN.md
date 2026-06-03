@@ -452,6 +452,8 @@ Fallback: `"Trebuchet MS", "Lucida Grande", sans-serif`
 - **Padding:** `16px`
 - **Box Shadow:** `rgba(57, 203, 251, 0.3) 0px 0px 20px 0px` (cyan glow)
 
+> **React Native Implementation Note:** `backdrop-filter: blur()` is a CSS-only property — it is not supported in React Native. The frosted-glass blur effect is web-only. In React Native components, approximate the glass effect using `StyleSheet.create` with `rgba` backgrounds and explicit `borderColor`/`borderWidth`. Do **not** rely on the `.glass`, `.glass-border`, or `.card-glass` CSS utility classes inside native components — use inline `StyleSheet` values instead. On web, the CSS utilities apply correctly.
+
 ### Inputs & Forms
 
 #### Text Input

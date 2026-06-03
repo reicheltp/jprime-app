@@ -9,7 +9,7 @@ import { Text, TextProps, View, ViewProps } from "react-native";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-export type BadgeVariant = "success" | "warning" | "error" | "info" | "primary" | "secondary";
+export type BadgeVariant = "success" | "warning" | "error" | "info" | "primary" | "secondary" | "glass";
 
 interface BadgeProps extends ViewProps {
   variant?: BadgeVariant;
@@ -43,6 +43,10 @@ const variantStyles: Record<BadgeVariant, { container: string; text: string }> =
   secondary: {
     container: "bg-neutral-200",
     text: "text-neutral-800",
+  },
+  glass: {
+    container: "bg-glass-strong border border-glass-border",
+    text: "text-neutral-300",
   },
 };
 

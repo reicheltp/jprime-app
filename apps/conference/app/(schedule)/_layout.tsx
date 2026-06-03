@@ -5,7 +5,7 @@ export default function ScheduleLayout() {
     <Stack
       screenOptions={{
         headerStyle: {
-          backgroundColor: '#212529',
+          backgroundColor: 'rgba(33, 37, 41, 0.95)',
         },
         headerTintColor: '#FFFFFF',
         headerTitleStyle: {
@@ -13,6 +13,7 @@ export default function ScheduleLayout() {
           fontFamily: 'Poppins-700',
           fontSize: 18,
         },
+        headerShadowVisible: true,
         contentStyle: {
           backgroundColor: '#212529',
         },

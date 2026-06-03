@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Pressable, ScrollView } from 'react-native'
+import { View, Text, Pressable, ScrollView, StyleSheet } from 'react-native'
 import type { FilterState } from '@jprime/utils'
 
 interface FilterBarProps {
@@ -9,19 +9,15 @@ interface FilterBarProps {
   onChange: (filter: FilterState) => void
 }
 
-function dayLabel(iso: string, index: number): string {
-  return `Day ${index + 1}`
-}
-
 export const FilterBar: React.FC<FilterBarProps> = ({ days, tracks, value, onChange }) => {
   const hasActiveFilter = value.day !== null || value.track !== null
 
   return (
-    <View className="bg-neutral-800 border-b border-neutral-700 py-2">
+    <View style={styles.container}>
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        contentContainerClassName="px-4 gap-2 flex-row items-center"
+        contentContainerStyle={styles.scroll}
       >
         {days.map((day, i) => {
           const active = value.day === day
@@ -29,20 +25,16 @@ export const FilterBar: React.FC<FilterBarProps> = ({ days, tracks, value, onCha
             <Pressable
               key={day}
               onPress={() => onChange({ ...value, day: active ? null : day })}
-              className={`px-4 py-2 rounded-full border ${
-                active
-                  ? 'bg-primary border-primary'
-                  : 'bg-neutral-700 border-neutral-600'
-              }`}
+              style={[styles.chip, active ? styles.chipActivePrimary : styles.chipInactive]}
             >
-              <Text className={`text-sm font-medium ${active ? 'text-white' : 'text-neutral-300'}`}>
-                {dayLabel(day, i)}
+              <Text style={[styles.chipText, active ? styles.chipTextActive : styles.chipTextInactive]}>
+                Day {i + 1}
               </Text>
             </Pressable>
           )
         })}
 
-        <View className="w-px h-5 bg-neutral-600" />
+        <View style={styles.divider} />
 
         {tracks.map((track) => {
           const active = value.track === track
@@ -50,13 +42,9 @@ export const FilterBar: React.FC<FilterBarProps> = ({ days, tracks, value, onCha
             <Pressable
               key={track}
               onPress={() => onChange({ ...value, track: active ? null : track })}
-              className={`px-4 py-2 rounded-full border ${
-                active
-                  ? 'bg-cyan border-cyan'
-                  : 'bg-neutral-700 border-neutral-600'
-              }`}
+              style={[styles.chip, active ? styles.chipActiveCyan : styles.chipInactive]}
             >
-              <Text className={`text-sm font-medium ${active ? 'text-white' : 'text-neutral-300'}`}>
+              <Text style={[styles.chipText, active ? styles.chipTextActive : styles.chipTextInactive]}>
                 {track}
               </Text>
             </Pressable>
@@ -65,12 +53,12 @@ export const FilterBar: React.FC<FilterBarProps> = ({ days, tracks, value, onCha
 
         {hasActiveFilter && (
           <>
-            <View className="w-px h-5 bg-neutral-600" />
+            <View style={styles.divider} />
             <Pressable
               onPress={() => onChange({ day: null, track: null })}
-              className="px-4 py-2 rounded-full border border-neutral-600"
+              style={styles.chipClear}
             >
-              <Text className="text-sm text-neutral-400">✕ Clear</Text>
+              <Text style={styles.chipTextClear}>✕ Clear</Text>
             </Pressable>
           </>
         )}
@@ -78,3 +66,64 @@ export const FilterBar: React.FC<FilterBarProps> = ({ days, tracks, value, onCha
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'rgba(52, 58, 64, 0.8)',
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(255, 255, 255, 0.08)',
+    paddingVertical: 8,
+  },
+  scroll: {
+    paddingHorizontal: 16,
+    gap: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  divider: {
+    width: 1,
+    height: 20,
+    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+  },
+  chip: {
+    paddingHorizontal: 14,
+    paddingVertical: 7,
+    borderRadius: 20,
+    borderWidth: 1,
+  },
+  chipInactive: {
+    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    borderColor: 'rgba(255, 255, 255, 0.12)',
+  },
+  chipActivePrimary: {
+    backgroundColor: '#E83283',
+    borderColor: '#E83283',
+  },
+  chipActiveCyan: {
+    backgroundColor: 'rgba(57, 203, 251, 0.2)',
+    borderColor: '#39CBFB',
+  },
+  chipClear: {
+    paddingHorizontal: 14,
+    paddingVertical: 7,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.12)',
+    backgroundColor: 'transparent',
+  },
+  chipText: {
+    fontSize: 13,
+    fontWeight: '500',
+  },
+  chipTextActive: {
+    color: '#FFFFFF',
+  },
+  chipTextInactive: {
+    color: '#ADB5BD',
+  },
+  chipTextClear: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: '#808080',
+  },
+})

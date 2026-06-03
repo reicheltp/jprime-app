@@ -1,4 +1,4 @@
-import { NativeTabs } from "expo-router/unstable-native-tabs";
+import { Tabs } from "expo-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { StatusBar } from "expo-status-bar";
 import {
@@ -49,7 +49,7 @@ function useLoadedFonts() {
 }
 
 // This is the root layout for the entire app
-// Using NativeTabs for native performance and platform-appropriate UX
+// Using Tabs for route groups with nested navigation
 export default function RootLayout() {
   useLoadedFonts();
 
@@ -57,17 +57,9 @@ export default function RootLayout() {
     <>
       <QueryClientProvider client={queryClient}>
         <StatusBar style="light" />
-        <NativeTabs
+        <Tabs
           screenOptions={{
-            headerStyle: {
-              backgroundColor: "#212529",
-            },
-            headerTintColor: "#FFFFFF",
-            headerTitleStyle: {
-              fontWeight: "700",
-              fontFamily: "Poppins-700",
-              fontSize: 18,
-            },
+            headerShown: false,
             contentStyle: {
               backgroundColor: "#212529",
             },
@@ -79,25 +71,28 @@ export default function RootLayout() {
             },
           }}
         >
-          <NativeTabs.Trigger
+          <Tabs.Screen
             name="(schedule)"
             options={{
               title: "Schedule",
+              href: null,
             }}
           />
-          <NativeTabs.Trigger
+          <Tabs.Screen
             name="(speakers)"
             options={{
               title: "Speakers",
+              href: null,
             }}
           />
-          <NativeTabs.Trigger
+          <Tabs.Screen
             name="(venue)"
             options={{
               title: "Venue",
+              href: null,
             }}
           />
-        </NativeTabs>
+        </Tabs>
       </QueryClientProvider>
     </>
   );
