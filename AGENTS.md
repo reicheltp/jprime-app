@@ -158,6 +158,21 @@ jprime-app/
 - `_layout.tsx` for shared layouts
 - Dynamic routes: `[param]` or `[...param]`
 
+### 3.6 Visual Quality Is a Primary Goal
+
+The look and feel of the app is a **first-class requirement**, equal in importance to correctness and performance. A screen that works but looks unfinished is **not done**.
+
+**Rules:**
+
+- **Design.md is the spec.** Every screen must match the cyberpunk/neon aesthetic defined in [`Design.md`](../Design.md). Consult it before writing any UI code.
+- **No placeholder UI in committed code.** Flat, unstyled layouts — plain white backgrounds, default system fonts, missing colors — must be fixed before committing. Treat visual debt the same as broken tests.
+- **Dark theme always.** All screens use `backgroundColor: '#212529'` (or darker). Light backgrounds are only acceptable for explicitly light-mode surfaces. Never rely on the system default.
+- **StyleSheet over CSS utilities for native components.** CSS utility classes (`.glass`, `.card-glass`, etc.) do not reliably apply in React Native. Always use `StyleSheet.create` with explicit `rgba` values. See `Design.md` > Glass Cards > React Native Implementation Note.
+- **Ionicons for all icons.** No emoji characters as UI icons. Use `@expo/vector-icons` Ionicons consistently across the app.
+- **All bottom-tab screens must declare `tabBarIcon`.** Missing icons show platform-default triangles, which is unacceptable. Define `tabBarIcon` with an `Ionicons` component for every `Tabs.Screen`.
+- **Touch targets ≥ 44×44 pt** on all interactive elements (Design.md §8).
+- **Visual review before task completion.** Run the app and look at the screen before marking work done. The visual state is the acceptance criterion.
+
 ---
 
 ## 4. Code Organization
