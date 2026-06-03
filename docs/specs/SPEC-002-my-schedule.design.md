@@ -3,7 +3,7 @@ id: SPEC-002
 title: My Schedule Design
 feature: my-schedule
 type: design
-status: draft
+status: approved
 created: 2026-06-03
 updated: 2026-06-03
 ---

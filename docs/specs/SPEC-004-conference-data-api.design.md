@@ -3,7 +3,7 @@ id: SPEC-004
 title: Conference Data API Design
 feature: conference-data-api
 type: design
-status: draft
+status: approved
 created: 2026-06-03
 updated: 2026-06-03
 ---

@@ -3,7 +3,7 @@ id: SPEC-001
 title: Session Browsing Design
 feature: session-browsing
 type: design
-status: draft
+status: approved
 created: 2026-06-03
 updated: 2026-06-03
 ---

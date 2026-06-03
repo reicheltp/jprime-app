@@ -3,7 +3,7 @@ id: SPEC-003
 title: Speaker Directory Design
 feature: speaker-directory
 type: design
-status: draft
+status: approved
 created: 2026-06-03
 updated: 2026-06-03
 ---
