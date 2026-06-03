@@ -24,7 +24,9 @@ One row per planned feature. Update the status columns as spec phases are approv
 
 | ID | Feature | Domain | Requirements | Design | Tasks | Notes |
 |----|---------|--------|-------------|--------|-------|-------|
-| SPEC-001 | _TBD_ | — | — | — | — | First spec not yet created |
+| SPEC-001 | Session Browsing | schedule | `draft` | — | — | |
+| SPEC-002 | My Schedule | schedule | `draft` | — | — | Device-local bookmarks; auth sync deferred |
+| SPEC-003 | Speaker Directory | speakers | `draft` | — | — | |
 
 ---
 
