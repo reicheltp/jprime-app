@@ -15,10 +15,10 @@ export class ScraperProvider implements DataProvider {
   private ttlMs: number
   private baseUrl: string
 
-  constructor(baseUrl = 'https://jprime.io', ttlMs = 10 * 60 * 1000) {
+  constructor(baseUrl = 'https://jprime.io', ttlMs = 10 * 60 * 1000, cache?: Cache) {
     this.baseUrl = baseUrl
     this.ttlMs = ttlMs
-    this.cache = new Cache()
+    this.cache = cache ?? new Cache()
   }
 
   private async refresh(): Promise<void> {

@@ -3,13 +3,13 @@ import { registerCors } from './middleware/cors'
 import { registerSessionRoutes } from './routes/sessions'
 import { registerSpeakerRoutes } from './routes/speakers'
 import { registerHealthRoute } from './routes/health'
-import { JsonDataProvider } from './providers/JsonDataProvider'
+import { ScraperProvider } from './providers/ScraperProvider'
 import { Cache } from './providers/cache'
 
 const app = new Hono()
 const cache = new Cache()
 
-const provider = new JsonDataProvider()
+const provider = new ScraperProvider('https://jprime.io', 10 * 60 * 1000, cache)
 
 registerCors(app)
 registerHealthRoute(app, cache)
