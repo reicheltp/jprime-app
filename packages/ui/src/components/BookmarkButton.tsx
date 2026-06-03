@@ -28,7 +28,7 @@ export const BookmarkButton: React.FC<BookmarkButtonProps> = ({
       } ${isLoading ? 'opacity-50' : ''}`}
     >
       <Text className={size === 'sm' ? 'text-sm' : 'text-base'}>
-        {isBookmarked ? '🔖' : '🔖'}
+        {isBookmarked ? '🔖' : '🔗'}
       </Text>
       <Text
         className={`font-medium ${size === 'sm' ? 'text-sm' : 'text-base'} ${

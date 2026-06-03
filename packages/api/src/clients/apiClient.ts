@@ -19,6 +19,6 @@ export async function apiFetch<T>(path: string): Promise<T> {
     throw new ApiError(res.status, `API error ${res.status} on ${path}`)
   }
 
-  const json = (await res.json()) as { data: T }
+  const json = (await res.json()) as { data: T; meta?: unknown }
   return json.data
 }
