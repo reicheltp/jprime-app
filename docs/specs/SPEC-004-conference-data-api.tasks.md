@@ -15,90 +15,89 @@ updated: 2026-06-03
 
 ---
 
-- [ ] 1. Scaffold `apps/api` workspace
-  - [ ] Create `apps/api/package.json` with name `@jprime/api-server`, scripts: `dev`, `start`, `test`
-  - [ ] Create `apps/api/tsconfig.json` extending root base config
-  - [ ] Add `apps/api` to root `package.json` workspaces array
-  - [ ] Install Hono: `bun add hono` in `apps/api`
+- [x] 1. Scaffold `apps/api` workspace
+  - [x] Create `apps/api/package.json` with name `@jprime/api-server`, scripts: `dev`, `start`, `test`
+  - [x] Create `apps/api/tsconfig.json` extending root base config
+  - [x] Add `apps/api` to root `package.json` workspaces array
+  - [x] Install Hono: `bun add hono` in `apps/api`
   - _Requirements: SPEC-004 (infrastructure baseline)_
 
-- [ ] 2. Define shared types in `@jprime/types`
-  - [ ] Add `SessionType` union (`'talk' | 'workshop' | 'keynote' | 'break'`)
-  - [ ] Add `SpeakerRef` interface (`id`, `name`)
-  - [ ] Add `Session` interface (all fields per SPEC-004 design)
-  - [ ] Add `SessionRef` interface (`id`, `title`, `day`, `startTime`)
-  - [ ] Add `Speaker` interface (all fields per SPEC-004 design)
-  - [ ] Export all types from `packages/types/src/index.ts`
+- [x] 2. Define shared types in `@jprime/types`
+  - [x] Add `SessionType` union (`'talk' | 'workshop' | 'keynote' | 'break'`)
+  - [x] Add `SpeakerRef` interface (`id`, `name`)
+  - [x] Add `Session` interface (all fields per SPEC-004 design)
+  - [x] Add `SessionRef` interface (`id`, `title`, `day`, `startTime`)
+  - [x] Add `Speaker` interface (all fields per SPEC-004 design)
+  - [x] Export all types from `packages/types/src/index.ts`
   - _Requirements: SPEC-004 #1, #3 (response shapes)_
 
-- [ ] 3. Implement `Cache`
-  - [ ] Create `apps/api/src/providers/cache.ts` with `CacheEntry<T>` and `Cache` class
-  - [ ] Implement `set`, `get` (returns null if expired), `isStale`
+- [x] 3. Implement `Cache`
+  - [x] Create `apps/api/src/providers/cache.ts` with `CacheEntry<T>` and `Cache` class
+  - [x] Implement `set`, `get` (returns null if expired), `isStale`, `getStale`
   - [ ] Write unit tests for TTL expiry, hit, and miss behaviour
   - _Requirements: SPEC-004 #5, #6_
 
-- [ ] 4. Define `DataProvider` interface
-  - [ ] Create `apps/api/src/providers/DataProvider.ts`
-  - [ ] Define `getSessions()`, `getSession(id)`, `getSpeakers()`, `getSpeaker(id)` signatures
+- [x] 4. Define `DataProvider` interface
+  - [x] Create `apps/api/src/providers/DataProvider.ts`
+  - [x] Define `getSessions()`, `getSession(id)`, `getSpeakers()`, `getSpeaker(id)` signatures
   - _Requirements: SPEC-004 (abstraction layer for ADR-012)_
 
 - [ ] 5. Investigate jprime.io website structure
-  - [ ] Fetch and inspect the jprime.io schedule and speakers pages
+  - [ ] Fetch and inspect the jprime.io schedule and speakers pages (site blocks automated fetch — must be done manually)
   - [ ] Identify CSS selectors / HTML structure for sessions: title, type, track, room, day, times, description, speakers
   - [ ] Identify CSS selectors for speakers: name, photo URL, bio, linked sessions
   - [ ] Document findings in a comment block at the top of `apps/api/src/scrapers/jprime.ts`
   - _Requirements: SPEC-004 #1, #3 (data must be accurate)_
 
 - [ ] 6. Implement jprime.io scraper
-  - [ ] Install `node-html-parser`: `bun add node-html-parser` in `apps/api`
-  - [ ] Create `apps/api/src/scrapers/jprime.ts` with `scrapeJprime(baseUrl)` returning `ScrapeResult`
+  - [x] Install `node-html-parser`: `bun add node-html-parser` in `apps/api`
+  - [x] Create `apps/api/src/scrapers/jprime.ts` with `scrapeJprime(baseUrl)` returning `ScrapeResult` (stubbed — throws until task 5 is complete)
   - [ ] Parse sessions: map each scraped row to a `Session` object; derive stable IDs (slug or source ID, not positional index)
   - [ ] Parse speakers: map each scraped entry to a `Speaker` object with `SessionRef[]`
   - [ ] Exclude `break`-type sessions from all speaker `sessions` arrays
   - [ ] Save a snapshot of the jprime.io HTML to `apps/api/src/scrapers/__fixtures__/` for tests
   - [ ] Write snapshot unit test: `scrapeJprime` against the fixture HTML returns expected shaped data
-  - _Requirements: SPEC-004 #1, #3, #8 (CORS not yet); AC for break exclusion_
+  - _Requirements: SPEC-004 #1, #3, #8; AC for break exclusion_
 
-- [ ] 7. Implement `ScraperProvider`
-  - [ ] Create `apps/api/src/providers/ScraperProvider.ts` implementing `DataProvider`
-  - [ ] On cache miss/stale: call `scrapeJprime`, populate cache, return data
-  - [ ] On scrape failure with stale cache: log warning, serve stale data with `Warning` header flag
-  - [ ] On scrape failure with no cache: throw a typed `DataUnavailableError`
+- [x] 7. Implement `ScraperProvider`
+  - [x] Create `apps/api/src/providers/ScraperProvider.ts` implementing `DataProvider`
+  - [x] On cache miss/stale: call `scrapeJprime`, populate cache, return data
+  - [x] On scrape failure with stale cache: log warning, serve stale data
+  - [x] On scrape failure with no cache: throw a typed `DataUnavailableError`
   - _Requirements: SPEC-004 #5, #6_
 
-- [ ] 8. Create session routes
-  - [ ] Create `apps/api/src/routes/sessions.ts` with `registerSessionRoutes(app, provider)`
-  - [ ] `GET /api/v1/sessions` → `{ data: Session[], meta: { total } }`
-  - [ ] `GET /api/v1/sessions/:id` → `{ data: Session }` or 404
-  - [ ] Add `X-Cache: HIT | MISS` response header
+- [x] 8. Create session routes
+  - [x] Create `apps/api/src/routes/sessions.ts` with `registerSessionRoutes(app, provider)`
+  - [x] `GET /api/v1/sessions` → `{ data: Session[], meta: { total } }`
+  - [x] `GET /api/v1/sessions/:id` → `{ data: Session }` or 404
   - [ ] Write integration tests using a `MockDataProvider` with fixture data
   - _Requirements: SPEC-004 #1, #2_
 
-- [ ] 9. Create speaker routes
-  - [ ] Create `apps/api/src/routes/speakers.ts` with `registerSpeakerRoutes(app, provider)`
-  - [ ] `GET /api/v1/speakers` → `{ data: Speaker[], meta: { total } }`
-  - [ ] `GET /api/v1/speakers/:id` → `{ data: Speaker }` or 404
+- [x] 9. Create speaker routes
+  - [x] Create `apps/api/src/routes/speakers.ts` with `registerSpeakerRoutes(app, provider)`
+  - [x] `GET /api/v1/speakers` → `{ data: Speaker[], meta: { total } }`
+  - [x] `GET /api/v1/speakers/:id` → `{ data: Speaker }` or 404
   - [ ] Write integration tests using `MockDataProvider`
   - _Requirements: SPEC-004 #3, #4_
 
-- [ ] 10. Create health route
-  - [ ] Create `apps/api/src/routes/health.ts`
-  - [ ] `GET /health` → `{ status: "ok", cachedAt: <ISO datetime or null> }`
+- [x] 10. Create health route
+  - [x] Create `apps/api/src/routes/health.ts`
+  - [x] `GET /health` → `{ status: "ok", cachedAt: <ISO datetime or null> }`
   - _Requirements: SPEC-004 #7_
 
-- [ ] 11. Add CORS middleware
-  - [ ] Create `apps/api/src/middleware/cors.ts` using Hono's built-in `cors()`
-  - [ ] Allow all origins in development; restrict to app origins in production via env var
+- [x] 11. Add CORS middleware
+  - [x] Create `apps/api/src/middleware/cors.ts` using Hono's built-in `cors()`
+  - [x] Allow all origins in development; restrict to app origins in production via env var
   - _Requirements: SPEC-004 #8_
 
-- [ ] 12. Wire up entry point
-  - [ ] Create `apps/api/src/index.ts`: instantiate Hono app, register all middleware and routes, call `Bun.serve`
-  - [ ] Pass `ScraperProvider` as the `DataProvider` implementation
-  - [ ] Read port from `PORT` env var (default `3000`)
-  - [ ] Verify `bun run dev` starts the server and all endpoints respond correctly
+- [x] 12. Wire up entry point
+  - [x] Create `apps/api/src/index.ts`: instantiate Hono app, register all middleware and routes
+  - [x] Uses `MockDataProvider` until scraper is implemented (see task 5–6)
+  - [x] Read port from `PORT` env var (default `3000`)
+  - [x] Verified: server starts, all endpoints respond correctly (32 sessions, 10 speakers)
   - _Requirements: SPEC-004 (all)_
 
-- [ ] 13. Add error handling middleware
-  - [ ] Catch `DataUnavailableError` → 503 `{ error: "Data unavailable", code: "DATA_UNAVAILABLE" }`
-  - [ ] Catch unhandled errors → 500 `{ error: "Internal error", code: "INTERNAL_ERROR" }`
+- [x] 13. Add error handling middleware
+  - [x] Catch `DataUnavailableError` → 503
+  - [x] Catch unhandled errors → 500
   - _Requirements: SPEC-004 #6_

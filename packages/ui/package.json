@@ -19,7 +19,10 @@
     "nativewind": "^4.0.0",
     "clsx": "^2.1.0",
     "tailwind-merge": "^2.2.0",
-    "@jprime/utils": "workspace:*"
+    "@jprime/types": "workspace:*",
+    "@jprime/utils": "workspace:*",
+    "@jprime/api": "workspace:*",
+    "@react-native-async-storage/async-storage": "^3.1.1"
   },
   "devDependencies": {
     "@types/react": "~18.2.45",

@@ -1,14 +1,38 @@
-import { Stack } from "expo-router";
+import { Tabs } from 'expo-router'
 
 export default function ScheduleLayout() {
   return (
-    <Stack
+    <Tabs
       screenOptions={{
-        title: "Schedule",
+        tabBarActiveTintColor: '#E83283',
+        tabBarInactiveTintColor: '#9CA3AF',
+        tabBarStyle: { borderTopColor: '#F3F4F6' },
+        headerStyle: { backgroundColor: '#FFFFFF' },
+        headerTintColor: '#212529',
       }}
     >
-      <Stack.Screen name="index" />
-      <Stack.Screen name="[sessionId]" />
-    </Stack>
-  );
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: 'Schedule',
+          tabBarLabel: 'Schedule',
+        }}
+      />
+      <Tabs.Screen
+        name="my-schedule"
+        options={{
+          title: 'My Schedule',
+          tabBarLabel: 'My Schedule',
+        }}
+      />
+      <Tabs.Screen
+        name="[sessionId]"
+        options={{
+          href: null,
+          headerShown: true,
+          title: 'Session',
+        }}
+      />
+    </Tabs>
+  )
 }

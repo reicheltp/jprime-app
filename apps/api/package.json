@@ -1,0 +1,23 @@
+{
+  "name": "@jprime/api-server",
+  "version": "0.0.1",
+  "description": "Conference data API server — Bun/Hono",
+  "private": true,
+  "module": "src/index.ts",
+  "scripts": {
+    "dev": "bun run --hot src/index.ts",
+    "start": "bun run src/index.ts",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.7",
+    "@jprime/types": "workspace:*",
+    "hono": "^4.12.23",
+    "node-html-parser": "^7.1.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.3.0"
+  }
+}
