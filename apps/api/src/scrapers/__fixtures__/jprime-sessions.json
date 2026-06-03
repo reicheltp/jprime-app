@@ -1,0 +1,47 @@
+[
+  {
+    "hallName": "hall A",
+    "id": 1,
+    "title": "Opening Keynote",
+    "startTime": "2026-06-03T09:00:00",
+    "endTime": "2026-06-03T09:45:00",
+    "lectorName": "Jane Doe",
+    "talkDescription": "Welcome to JPrime 2026!"
+  },
+  {
+    "hallName": "hall A",
+    "id": 2,
+    "title": "Advanced TypeScript Patterns",
+    "startTime": "2026-06-03T10:00:00",
+    "endTime": "2026-06-03T10:45:00",
+    "lectorName": "John Smith",
+    "coLectorName": "Alice Johnson",
+    "talkDescription": "Deep dive into TypeScript advanced features."
+  },
+  {
+    "hallName": "hall B",
+    "id": 3,
+    "title": "React in 2026",
+    "startTime": "2026-06-03T10:00:00",
+    "endTime": "2026-06-03T10:45:00",
+    "lectorName": "Bob Wilson",
+    "talkDescription": "What's new in React ecosystem."
+  },
+  {
+    "hallName": "hall A",
+    "id": 4,
+    "title": "Coffee Break",
+    "startTime": "2026-06-03T11:00:00",
+    "endTime": "2026-06-03T11:30:00",
+    "talkDescription": null
+  },
+  {
+    "hallName": "hall C",
+    "id": 5,
+    "title": "Workshop: Building AI Agents",
+    "startTime": "2026-06-03T14:00:00",
+    "endTime": "2026-06-03T17:00:00",
+    "lectorName": "Carol Brown",
+    "talkDescription": "Hands-on workshop on AI agent development."
+  }
+]

@@ -34,7 +34,7 @@ updated: 2026-06-03
 - [x] 3. Implement `Cache`
   - [x] Create `apps/api/src/providers/cache.ts` with `CacheEntry<T>` and `Cache` class
   - [x] Implement `set`, `get` (returns null if expired), `isStale`, `getStale`
-  - [ ] Write unit tests for TTL expiry, hit, and miss behaviour
+  - [x] Write unit tests for TTL expiry, hit, and miss behaviour
   - _Requirements: SPEC-004 #5, #6_
 
 - [x] 4. Define `DataProvider` interface
@@ -54,8 +54,8 @@ updated: 2026-06-03
   - [x] Parse sessions: map each API response to a `Session` object with stable IDs derived from numeric id
   - [x] Parse speakers: map lectorName/coLectorName to `Speaker` objects with `SessionRef[]`
   - [x] Exclude `break`-type sessions from all speaker `sessions` arrays
-  - [ ] Save a snapshot of the API response to `apps/api/src/scrapers/__fixtures__/` for tests
-  - [ ] Write snapshot unit test: `scrapeJprime` against the fixture returns expected shaped data
+  - [x] Save a snapshot of the API response to `apps/api/src/scrapers/__fixtures__/` for tests
+  - [x] Write snapshot unit test: `scrapeJprime` against the fixture returns expected shaped data
   - _Requirements: SPEC-004 #1, #3, #8; AC for break exclusion_
 
 - [x] 7. Implement `ScraperProvider`
@@ -69,14 +69,14 @@ updated: 2026-06-03
   - [x] Create `apps/api/src/routes/sessions.ts` with `registerSessionRoutes(app, provider)`
   - [x] `GET /api/v1/sessions` → `{ data: Session[], meta: { total } }`
   - [x] `GET /api/v1/sessions/:id` → `{ data: Session }` or 404
-  - [ ] Write integration tests using a `MockDataProvider` with fixture data
+  - [x] Write integration tests using a `MockDataProvider` with fixture data
   - _Requirements: SPEC-004 #1, #2_
 
 - [x] 9. Create speaker routes
   - [x] Create `apps/api/src/routes/speakers.ts` with `registerSpeakerRoutes(app, provider)`
   - [x] `GET /api/v1/speakers` → `{ data: Speaker[], meta: { total } }`
   - [x] `GET /api/v1/speakers/:id` → `{ data: Speaker }` or 404
-  - [ ] Write integration tests using `MockDataProvider`
+  - [x] Write integration tests using `MockDataProvider`
   - _Requirements: SPEC-004 #3, #4_
 
 - [x] 10. Create health route
