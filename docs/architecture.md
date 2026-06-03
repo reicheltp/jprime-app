@@ -6,6 +6,8 @@ last_updated: 2026-06-03
 status: active
 ---
 
+> **Note:** DESIGN.md integration implemented 2026-06-03. See ADR-010 for design system architecture.
+
 # Architecture Overview
 
 Summary of accepted architectural decisions. Each row links to its full ADR (context, options, rationale, consequences).
@@ -22,19 +24,20 @@ Summary of accepted architectural decisions. Each row links to its full ADR (con
 | [ADR-006](decisions/ADR-006-domain-driven-organization.md) | Code organization | Domain-driven (by feature) | 2026-06-03 |
 | [ADR-007](decisions/ADR-007-web-first-platform-strategy.md) | Platform priority | Web-first, full native support | 2026-06-03 |
 | [ADR-008](decisions/ADR-008-bun-test-testing-strategy.md) | Testing | Bun Test + @testing-library/react-native | 2026-06-03 |
-| [ADR-009](decisions/ADR-009-nativewind-tailwind-styling.md) | Styling | Tailwind CSS v4 via NativeWind | 2026-06-03 |
+| [ADR-009](decisions/ADR-009-nativewind-tailwind-styling.md) | Styling | Tailwind CSS v4 via NativeWind v5 + DESIGN.md | 2026-06-03 |
+| [ADR-010](decisions/ADR-010-design-md-design-system.md) | Design System | DESIGN.md as single source of truth | 2026-06-03 |
 
 ## Technology Snapshot
 
 | Category | Technology |
 |----------|------------|
-| Framework | Expo SDK 50+ |
-| Navigation | Expo Router v3+ |
+| Framework | Expo SDK 56 |
+| Navigation | Expo Router v56 |
 | State management | React Query v5+ |
-| Language | TypeScript 5.3+ (strict) |
+| Language | TypeScript 6+ (strict) |
 | Package manager | Bun 1.1+ |
 | Testing | Bun Test + @testing-library/react-native |
-| Styling | Tailwind CSS v4 via NativeWind |
+| Styling | Tailwind CSS v4 via NativeWind v5 |
 | CI/CD | GitHub Actions |
 
 ## Pending Decisions
