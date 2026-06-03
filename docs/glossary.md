@@ -17,7 +17,7 @@ Canonical definitions for terms used across code, specs, and architecture docume
 | Term | Definition |
 |------|------------|
 | **Conference** | The JPrime developer conference event as a whole. |
-| **Edition** | A single annual occurrence of the conference (e.g., JPrime 2026). |
+| **Edition** | A single annual occurrence of the conference (e.g., JPrime 2026). Each edition runs for 2 days and hosts approximately 1,100 attendees. |
 | **Venue** | The physical location where the conference is held. |
 | **Room** | A specific space within the venue where sessions take place (e.g., "Hall A", "Room 3"). |
 
@@ -32,7 +32,7 @@ Canonical definitions for terms used across code, specs, and architecture docume
 | **Workshop** | A hands-on, interactive session where attendees participate actively. |
 | **Keynote** | A featured talk, typically opening or closing a conference day. |
 | **Break** | A non-talk session slot (coffee break, lunch, registration). Not shown in speaker listings. |
-| **Track** | A thematic grouping of sessions across the schedule (e.g., "JVM Internals", "Cloud & DevOps", "Security"). |
+| **Track** | A thematic grouping of sessions across the schedule. JPrime has three tracks: two main session tracks and one dedicated workshop track. |
 | **Conflict** | A situation where two or more of a user's saved sessions overlap in time. |
 
 ## People
