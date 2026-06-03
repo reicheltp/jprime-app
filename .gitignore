@@ -1,0 +1,62 @@
+# Dependencies
+node_modules/
+bun.lockb
+
+# Bun
+bunfig.toml
+
+# macOS
+.DS_Store
+*.pem
+
+# Local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Expo
+.expo/
+dist/
+web-build/
+
+# Native builds
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Metro
+.metro-health-check*
+
+# Debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# OS
+*.log
+*.swp
+*~
+
+# IDE
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Testing
+coverage/
+
+# TypeScript
+*.tsbuildinfo
+
+# Spec files (if generated)
+*.spec.ts
+*.spec.tsx

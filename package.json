@@ -1,0 +1,34 @@
+{
+  "name": "jprime-app",
+  "version": "0.0.1",
+  "description": "Mobile conference app - monorepo root",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "bun run --filter '*' dev",
+    "build": "bun run --filter '*' build",
+    "lint": "bun run --filter '*' lint",
+    "test": "bun run --filter '*' test",
+    "typecheck": "bun run --filter '*' typecheck",
+    "clean": "bun run --filter '*' clean && rm -rf node_modules",
+    "expo:start": "bun run --cwd apps/conference expo start",
+    "expo:dev": "bun run --cwd apps/conference expo start --dev-client",
+    "expo:android": "bun run --cwd apps/conference expo run:android",
+    "expo:ios": "bun run --cwd apps/conference expo run:ios",
+    "expo:web": "bun run --cwd apps/conference expo start --web"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "packageManager": "bun@1.1.0",
+  "engines": {
+    "bun": ">=1.1.0"
+  },
+  "resolutions": {
+    "react": "19.2.3",
+    "react-native": "0.85.3"
+  }
+}
