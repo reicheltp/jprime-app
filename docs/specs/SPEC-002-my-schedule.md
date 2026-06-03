@@ -3,7 +3,7 @@ id: SPEC-002
 title: My Schedule Requirements
 feature: my-schedule
 type: requirements
-status: draft
+status: approved
 created: 2026-06-03
 updated: 2026-06-03
 ---

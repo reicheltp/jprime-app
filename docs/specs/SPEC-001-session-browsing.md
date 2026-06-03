@@ -3,7 +3,7 @@ id: SPEC-001
 title: Session Browsing Requirements
 feature: session-browsing
 type: requirements
-status: draft
+status: approved
 created: 2026-06-03
 updated: 2026-06-03
 conference_scale: ~1100 attendees, 2 days, 3 tracks
