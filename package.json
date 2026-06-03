@@ -23,9 +23,9 @@
   "devDependencies": {
     "@types/bun": "latest"
   },
-  "packageManager": "bun@1.1.0",
+  "packageManager": "bun@1.2.0",
   "engines": {
-    "bun": ">=1.1.0"
+    "bun": ">=1.2.0"
   },
   "resolutions": {
     "react": "19.2.3",
