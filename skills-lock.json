@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "skills": {
+    "ai-prompting": {
+      "source": "jasonkneen/kiro",
+      "sourceType": "github",
+      "skillPath": "skills/ai-prompting/SKILL.md",
+      "computedHash": "f84233d406f40bcb51df7828f863f30924360651e90d341c8870e9e8005214d9"
+    },
+    "building-native-ui": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "skillPath": "plugins/expo/skills/building-native-ui/SKILL.md",
+      "computedHash": "342df93f481a0dba919f372d6c7b40d2b4bf5b51dd24363aea2e5d0bae27a6fa"
+    },
+    "create-steering-documents": {
+      "source": "jasonkneen/kiro",
+      "sourceType": "github",
+      "skillPath": "skills/create-steering-documents/SKILL.md",
+      "computedHash": "67510b7528ae05ad05b21acb5588c24c93d8b4d81057c5ffdbb7373d98a60c67"
+    },
+    "design-documentation": {
+      "source": "jasonkneen/kiro",
+      "sourceType": "github",
+      "skillPath": "skills/design-documentation/SKILL.md",
+      "computedHash": "014c77bfb0dc2ab0ca3f9049d54fbc6b105ed7e948024302beb55431372c0fdc"
+    },
+    "expo-api-routes": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "skillPath": "plugins/expo/skills/expo-api-routes/SKILL.md",
+      "computedHash": "015c6b849507fda73fcc32d2448f033aaaaa21f5229085342b8421727a90cafb"
+    },
+    "expo-deployment": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "skillPath": "plugins/expo/skills/expo-deployment/SKILL.md",
+      "computedHash": "9ea9f16374765c1b16764a51bd43a64098921b33f48e94d9c5c1cce24b335c10"
+    },
+    "expo-tailwind-setup": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "skillPath": "plugins/expo/skills/expo-tailwind-setup/SKILL.md",
+      "computedHash": "d39e806942fe880347f161056729b588a3cb0f1796270eebf52633fe11cfdce1"
+    },
+    "quality-assurance": {
+      "source": "jasonkneen/kiro",
+      "sourceType": "github",
+      "skillPath": "skills/quality-assurance/SKILL.md",
+      "computedHash": "f1e029e66c12f7e6baeb3bb3fe34d10b819c00c003df4cf94c475d2bd8aad5e3"
+    },
+    "requirements-engineering": {
+      "source": "jasonkneen/kiro",
+      "sourceType": "github",
+      "skillPath": "skills/requirements-engineering/SKILL.md",
+      "computedHash": "b784e2ff7c6ffa2aa9af6cd289011de002089e8d3cecbd0036f4ceec943d14a1"
+    },
+    "spec-driven-development": {
+      "source": "jasonkneen/kiro",
+      "sourceType": "github",
+      "skillPath": "skills/spec-driven-development/SKILL.md",
+      "computedHash": "3d35d416e1556d2df6d7c28338a0a2783e54ed91a50eba27da9bc9f26685920e"
+    },
+    "task-breakdown": {
+      "source": "jasonkneen/kiro",
+      "sourceType": "github",
+      "skillPath": "skills/task-breakdown/SKILL.md",
+      "computedHash": "40e206910258199aaa7adb94223e47b4e1040653073f0114c808023c593f71b2"
+    },
+    "troubleshooting": {
+      "source": "jasonkneen/kiro",
+      "sourceType": "github",
+      "skillPath": "skills/troubleshooting/SKILL.md",
+      "computedHash": "460128e4e7eeeeccd156ce5ba4f4cdcb2d6092e896bde175660efeecd4891ef8"
+    },
+    "vercel-composition-patterns": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/composition-patterns/SKILL.md",
+      "computedHash": "f98931159fa9c7fed043bcd18a891a46dcf89ababa38df13a4c5b7b30dc0ce07"
+    },
+    "vercel-react-best-practices": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/react-best-practices/SKILL.md",
+      "computedHash": "3219a1944e404ffc14d1d9d6aef6dd2e3855b81387ee0a044ccbfe14d34c2357"
+    },
+    "vercel-react-native-skills": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/react-native-skills/SKILL.md",
+      "computedHash": "2e9088a7333666d8c2833b8ff58bd51b955501c42b4c7244f72b4cbf22dafcc4"
+    },
+    "vercel-react-view-transitions": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/react-view-transitions/SKILL.md",
+      "computedHash": "4fea9144f604256d0a21faaea904b7e205e7676e316721ba5fdd68c2600c7d42"
+    },
+    "web-design-guidelines": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/web-design-guidelines/SKILL.md",
+      "computedHash": "a6a44d5498f7e8f68289902f3dedfc6f38ae0cee1e96527c80724cf27f727c2a"
+    },
+    "writing-guidelines": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/writing-guidelines/SKILL.md",
+      "computedHash": "e90462d4f801d823603b12c345ad0ff91a7489415274432681d21c7129123c26"
+    }
+  }
+}
