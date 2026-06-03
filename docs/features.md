@@ -27,7 +27,7 @@ One row per planned feature. Update the status columns as spec phases are approv
 | SPEC-001 | Session Browsing | schedule | `approved` | `approved` | `implemented` | |
 | SPEC-002 | My Schedule | schedule | `approved` | `approved` | `implemented` | Device-local bookmarks; auth sync deferred |
 | SPEC-003 | Speaker Directory | speakers | `approved` | `approved` | `implemented` | |
-| SPEC-004 | Conference Data API | api | `approved` | `approved` | `implemented` | MockDataProvider active; scraper pending site access |
+| SPEC-004 | Conference Data API | api | `approved` | `approved` | `implemented` | ScraperProvider active with live jprime.io data |
 
 ---
 

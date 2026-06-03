@@ -42,21 +42,20 @@ updated: 2026-06-03
   - [x] Define `getSessions()`, `getSession(id)`, `getSpeakers()`, `getSpeaker(id)` signatures
   - _Requirements: SPEC-004 (abstraction layer for ADR-012)_
 
-- [ ] 5. Investigate jprime.io website structure
-  - [ ] Fetch and inspect the jprime.io schedule and speakers pages (site blocks automated fetch — must be done manually)
-  - [ ] Identify CSS selectors / HTML structure for sessions: title, type, track, room, day, times, description, speakers
-  - [ ] Identify CSS selectors for speakers: name, photo URL, bio, linked sessions
-  - [ ] Document findings in a comment block at the top of `apps/api/src/scrapers/jprime.ts`
+- [x] 5. Investigate jprime.io website structure
+  - [x] Discovered PWA API endpoints at `/pwa/findSessionsByHall?hallName={name}` returning JSON
+  - [x] Identified API response structure: id, title, startTime, endTime, lectorName, coLectorName, talkDescription
+  - [x] Documented findings in comment block at the top of `apps/api/src/scrapers/jprime.ts`
   - _Requirements: SPEC-004 #1, #3 (data must be accurate)_
 
-- [ ] 6. Implement jprime.io scraper
-  - [x] Install `node-html-parser`: `bun add node-html-parser` in `apps/api`
-  - [x] Create `apps/api/src/scrapers/jprime.ts` with `scrapeJprime(baseUrl)` returning `ScrapeResult` (stubbed — throws until task 5 is complete)
-  - [ ] Parse sessions: map each scraped row to a `Session` object; derive stable IDs (slug or source ID, not positional index)
-  - [ ] Parse speakers: map each scraped entry to a `Speaker` object with `SessionRef[]`
-  - [ ] Exclude `break`-type sessions from all speaker `sessions` arrays
-  - [ ] Save a snapshot of the jprime.io HTML to `apps/api/src/scrapers/__fixtures__/` for tests
-  - [ ] Write snapshot unit test: `scrapeJprime` against the fixture HTML returns expected shaped data
+- [x] 6. Implement jprime.io scraper
+  - [x] Uses native Bun fetch (no node-html-parser needed as API returns JSON)
+  - [x] Create `apps/api/src/scrapers/jprime.ts` with `scrapeJprime(baseUrl)` returning `ScrapeResult`
+  - [x] Parse sessions: map each API response to a `Session` object with stable IDs derived from numeric id
+  - [x] Parse speakers: map lectorName/coLectorName to `Speaker` objects with `SessionRef[]`
+  - [x] Exclude `break`-type sessions from all speaker `sessions` arrays
+  - [ ] Save a snapshot of the API response to `apps/api/src/scrapers/__fixtures__/` for tests
+  - [ ] Write snapshot unit test: `scrapeJprime` against the fixture returns expected shaped data
   - _Requirements: SPEC-004 #1, #3, #8; AC for break exclusion_
 
 - [x] 7. Implement `ScraperProvider`
@@ -92,9 +91,9 @@ updated: 2026-06-03
 
 - [x] 12. Wire up entry point
   - [x] Create `apps/api/src/index.ts`: instantiate Hono app, register all middleware and routes
-  - [x] Uses `MockDataProvider` until scraper is implemented (see task 5–6)
+  - [x] Uses `ScraperProvider` with live scraping from jprime.io
   - [x] Read port from `PORT` env var (default `3000`)
-  - [x] Verified: server starts, all endpoints respond correctly (32 sessions, 10 speakers)
+  - [x] Verified: server starts, all endpoints respond correctly (81 sessions, 26 speakers)
   - _Requirements: SPEC-004 (all)_
 
 - [x] 13. Add error handling middleware
