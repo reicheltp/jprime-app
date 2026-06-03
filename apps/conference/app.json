@@ -1,0 +1,41 @@
+{
+  "name": "JPrime Conference",
+  "slug": "jprime-conference",
+  "scheme": "jprime",
+  "version": "1.0.0",
+  "orientation": "portrait",
+  "icon": "./assets/images/icon.png",
+  "userInterfaceStyle": "automatic",
+  "splash": {
+    "image": "./assets/images/splash.png",
+    "resizeMode": "contain",
+    "backgroundColor": "#ffffff"
+  },
+  "assetBundlePatterns": [
+    "**/*"
+  ],
+  "ios": {
+    "supportsTablet": true,
+    "bundleIdentifier": "com.reicheltp.jprime.conference"
+  },
+  "android": {
+    "adaptiveIcon": {
+      "foregroundImage": "./assets/images/adaptive-icon.png",
+      "backgroundColor": "#ffffff"
+    },
+    "package": "com.reicheltp.jprime.conference"
+  },
+  "web": {
+    "favicon": "./assets/images/favicon.png",
+    "bundler": "metro"
+  },
+  "plugins": [
+    "expo-router",
+    "expo-font",
+    "expo-splash-screen",
+    "expo-status-bar"
+  ],
+  "experiments": {
+    "tsconfigPaths": true
+  }
+}

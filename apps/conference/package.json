@@ -1,0 +1,71 @@
+{
+  "name": "@jprime/conference",
+  "version": "0.0.1",
+  "description": "JPrime Conference - Main Expo Application",
+  "private": true,
+  "main": "expo-router/entry",
+  "scripts": {
+    "start": "expo start",
+    "dev": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "build": "expo export --public-url https://jprime-conference.com",
+    "build:android": "eas build --platform android",
+    "build:ios": "eas build --platform ios",
+    "build:web": "expo export --public-url https://jprime-conference.com",
+    "eject": "expo prebuild",
+    "lint": "eslint . --ext .ts,.tsx",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test",
+    "test:watch": "bun test --watch",
+    "clean": "rm -rf dist web-build .expo"
+  },
+  "dependencies": {
+    "@expo-google-fonts/inter": "^0.2.3",
+    "@expo-google-fonts/poppins": "^0.2.3",
+    "@tailwindcss/postcss": "^4.3.0",
+    "@tanstack/react-query": "^5.0.0",
+    "clsx": "^2.1.0",
+    "expo": "^56.0.0",
+    "expo-constants": "~56.0.16",
+    "expo-font": "~56.0.5",
+    "expo-linking": "~56.0.13",
+    "expo-router": "~56.2.8",
+    "expo-splash-screen": "~56.0.10",
+    "expo-status-bar": "~56.0.4",
+    "nativewind": "^5.0.0-preview.4",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-native": "0.85.3",
+    "react-native-css": "^3.0.7",
+    "react-native-gesture-handler": "~2.31.1",
+    "react-native-reanimated": "4.3.1",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-screens": "4.25.2",
+    "react-native-web": "^0.21.2",
+    "tailwind-merge": "^2.2.0",
+    "tailwindcss": "^4.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0",
+    "@testing-library/react-native": "^12.3.0",
+    "@types/react": "~19.2.14",
+    "@types/react-test-renderer": "^18.0.0",
+    "autoprefixer": "^10.4.17",
+    "eslint": "^8.56.0",
+    "eslint-config-universe": "^12.0.0",
+    "postcss": "^8.4.32",
+    "prettier": "^3.2.5",
+    "typescript": "~6.0.3"
+  },
+  "resolutions": {
+    "react": "19.2.3",
+    "react-native": "0.85.3"
+  },
+  "expo": {
+    "eas": {
+      "projectId": "jprime-conference"
+    }
+  }
+}
