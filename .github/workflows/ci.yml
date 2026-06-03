@@ -1,0 +1,204 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+env:
+  BUN_VERSION: 1.1.0
+  NODE_VERSION: 20
+
+jobs:
+  setup:
+    name: Setup Environment
+    runs-on: ubuntu-latest
+    outputs:
+      cache-hit: ${{ steps.bun-cache.outputs.cache-hit }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: ${{ env.BUN_VERSION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Cache Bun dependencies
+        id: bun-cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.bun
+            **/node_modules
+            **/bun.lockb
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+  install:
+    name: Install Dependencies
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: ${{ env.BUN_VERSION }}
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+  typecheck:
+    name: Type Check
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: ${{ env.BUN_VERSION }}
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Run TypeScript checks
+        run: bun run typecheck
+
+  lint:
+    name: Lint
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: ${{ env.BUN_VERSION }}
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Run ESLint
+        run: bun run lint
+
+  test:
+    name: Unit Tests
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: ${{ env.BUN_VERSION }}
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Run unit tests
+        run: bun run test
+
+      - name: Upload test coverage
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: test-coverage
+          path: coverage/
+
+  build:
+    name: Build
+    needs: [typecheck, lint, test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: ${{ env.BUN_VERSION }}
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build packages
+        run: bun run build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: |
+            **/dist/
+            apps/conference/web-build/
+
+  # Expo-specific jobs
+  expo-web:
+    name: Expo Web Build
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: ${{ env.BUN_VERSION }}
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build web app
+        working-directory: apps/conference
+        run: bun run build:web
+
+      - name: Upload web build
+        uses: actions/upload-artifact@v3
+        with:
+          name: web-build
+          path: apps/conference/dist/
+
+  # EAS Build (commented out - enable when EAS is configured)
+  # eas-build:
+  #   name: EAS Build
+  #   needs: [typecheck, lint, test]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v4
+  #     - name: Setup Bun
+  #       uses: oven-sh/setup-bun@v1
+  #       with:
+  #         bun-version: ${{ env.BUN_VERSION }}
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: ${{ env.NODE_VERSION }}
+  #     - name: Install dependencies
+  #       run: bun install --frozen-lockfile
+  #     - name: Install Expo CLI
+  #       run: npm install -g expo-cli ease-cli
+  #     - name: EAS Build
+  #       working-directory: apps/conference
+  #       run: eas build --platform all --non-interactive
+  #       env:
+  #         EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+  #         EAS_PROJECT_ID: jprime-conference
