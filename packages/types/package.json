@@ -1,0 +1,27 @@
+{
+  "name": "@jprime/types",
+  "version": "0.0.1",
+  "description": "Shared TypeScript types for JPrime Conference App",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "lint": "eslint . --ext .ts",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bun": {
+    "exports": {
+      ".": "./dist/index.js"
+    }
+  }
+}
