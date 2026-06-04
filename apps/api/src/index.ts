@@ -5,6 +5,7 @@ import { registerSpeakerRoutes } from './routes/speakers'
 import { registerHealthRoute } from './routes/health'
 import { registerAuthRoutes } from './routes/auth'
 import { registerProfileRoutes } from './routes/profile'
+import { registerAttendeeRoutes } from './routes/attendees'
 import { ScraperProvider } from './providers/ScraperProvider'
 import { Cache } from './providers/cache'
 
@@ -17,6 +18,7 @@ registerCors(app)
 registerHealthRoute(app, cache)
 registerAuthRoutes(app)
 registerProfileRoutes(app)
+registerAttendeeRoutes(app)
 registerSessionRoutes(app, provider)
 registerSpeakerRoutes(app, provider)
 
