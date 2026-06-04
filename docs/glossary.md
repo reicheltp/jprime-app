@@ -2,7 +2,7 @@
 title: Domain Glossary
 description: Canonical definitions of domain terms used in code, specs, and ADRs for the JPrime Conference App.
 type: glossary
-last_updated: 2026-06-03
+last_updated: 2026-06-04
 status: active
 ---
 
@@ -49,6 +49,26 @@ Canonical definitions for terms used across code, specs, and architecture docume
 | **Bookmark** | The action of saving a session to a user's personal schedule. Prefer "bookmark" over "save" or "favourite" in UI copy and code. |
 | **Bookmarked Session** | A session the attendee has added to their personal schedule. |
 | **My Schedule** | The attendee's personal view of their bookmarked sessions. |
+
+## Authentication
+
+| Term | Definition |
+|------|------------|
+| **OTP** | One-Time Password — a short-lived 6-digit numeric code generated for passwordless sign-in. Stored as a SHA-256 hash in the database and expires after 10 minutes. |
+| **Magic Code** | The user-facing name for an OTP sent to an attendee's email address. Prefer "magic code" in UI copy; use OTP in code and specs. |
+| **JWT** | JSON Web Token — a signed, stateless bearer token issued to the client after OTP verification. Encoded as `header.claims.signature` (HS256, 7-day expiry). |
+| **Bearer Token** | The JWT included in the `Authorization: Bearer <token>` HTTP header on authenticated requests. |
+| **Auth Session** | The client-side representation of a signed-in user: `{ token: string; user: { id, email } }`. Persisted in AsyncStorage and restored on app launch. |
+
+## Profile
+
+| Term | Definition |
+|------|------------|
+| **Profile** | A user's public-facing conference identity: display name, company, bio, avatar URL, and social links. Stored as nullable columns on the `users` table. |
+| **Display Name** | The attendee's preferred full name shown in the app (max 100 characters). Falls back to the email address when not set. |
+| **Bio** | A short attendee self-description (max 280 characters). |
+| **Avatar** | A circular representation of the attendee — either a remote image (via `avatarUrl`) or a generated initials badge derived from `displayName` or email. |
+| **Attendee Profile** | A profile belonging to a conference attendee; the primary use case for the Profile feature (SPEC-006). |
 
 ## Technical
 
