@@ -37,23 +37,6 @@ export async function getConnectCode(token: string): Promise<string> {
 }
 
 /**
- * Get or create a connect code for the current user
- * If user already has a code, returns the existing one
- * If user doesn't have a code, generates a new one
- * @param token - Authentication token
- * @returns The user's 5-character connect code
- */
-export async function getOrCreateConnectCode(token: string): Promise<string> {
-  try {
-    // Try to get existing code first
-    return await getConnectCode(token)
-  } catch {
-    // User doesn't have a code, generate one
-    return await generateConnectCode(token)
-  }
-}
-
-/**
  * Generate a connect code for the current user (idempotent)
  * If user already has a code, returns the existing one
  * @param token - Authentication token

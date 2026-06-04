@@ -134,22 +134,53 @@ export function registerProfileRoutes(app: Hono): void {
     return c.json({ data: toResponse(updated) })
   })
 
-  // GET /api/v1/profile/connect-code - Get user's connection code
+  // GET /api/v1/profile/connect-code - Get or create user's connection code
   app.get('/api/v1/profile/connect-code', requireAuth, (c) => {
     const userId = c.get('userId')
-    const user = db
+    const userEmail = c.get('userEmail')
+    
+    // Check if user already has a connection code
+    const existing = db
       .query<{ connection_code: string | null }, [string]>(`
         SELECT connection_code FROM users WHERE id = ?
       `)
       .get(userId)
 
-    if (!user) return c.json({ error: 'User not found', code: 'NOT_FOUND' }, 404)
+    if (!existing) return c.json({ error: 'User not found', code: 'NOT_FOUND' }, 404)
     
-    if (user.connection_code) {
-      return c.json({ data: { code: user.connection_code } })
+    if (existing.connection_code) {
+      return c.json({ data: { code: existing.connection_code } })
     }
     
-    return c.json({ error: 'No connection code found', code: 'NOT_FOUND' }, 404)
+    // Generate a new unique connection code
+    let code: string
+    let isUnique = false
+    
+    // Try up to 10 times to generate a unique code
+    for (let attempt = 0; attempt < 10; attempt++) {
+      code = generateConnectCode()
+      const existingCode = db
+        .query<{ count: number }, [string]>(`
+          SELECT COUNT(*) as count FROM users WHERE connection_code = ?
+        `)
+        .get(code)
+      
+      if ((existingCode?.count ?? 0) === 0) {
+        isUnique = true
+        break
+      }
+    }
+
+    if (!isUnique) {
+      return c.json({ error: 'Failed to generate unique code, please try again', code: 'SERVER_ERROR' }, 500)
+    }
+
+    // Save the connection code
+    db.query(`
+      UPDATE users SET connection_code = ? WHERE id = ?
+    `).run(code, userId)
+
+    return c.json({ data: { code } })
   })
 
   // PUT /api/v1/profile/connect-code - Generate connection code for user

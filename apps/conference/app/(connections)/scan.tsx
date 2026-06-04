@@ -50,17 +50,17 @@ export default function QRScannerScreen() {
     }, [])
   )
 
-  // Load user's connect code (or create if doesn't exist)
+  // Load user's connect code (backend auto-creates if doesn't exist)
   useEffect(() => {
     if (session?.token) {
       const loadCode = async () => {
         try {
           // Import dynamically to avoid circular dependency
-          const { getOrCreateConnectCode } = await import('../../lib/connectCodesClient')
-          const code = await getOrCreateConnectCode(session.token)
+          const { getConnectCode } = await import('../../lib/connectCodesClient')
+          const code = await getConnectCode(session.token)
           setUserConnectCode(code)
         } catch {
-          // Failed to get or create code
+          // Failed to load code
           setUserConnectCode(null)
         }
       }
@@ -198,7 +198,7 @@ export default function QRScannerScreen() {
         const lookupResult = await lookupByConnectCode(validation.code!)
 
         // Process the connection
-        await processConnection(lookupResult.attendeeId, lookupResult.displayName, 'code')
+        await processConnection(lookupResult.email, lookupResult.displayName, 'code')
         
         // Close modal on success
         setShowCodeModal(false)

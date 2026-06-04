@@ -54,17 +54,17 @@ export default function ConnectionsScreen() {
   const userDisplayName = userProfile?.displayName ?? session?.user.email.split('@')[0] ?? ''
   const userEmail = session?.user.email ?? ''
 
-  // Load user's connect code (or create if doesn't exist)
+  // Load user's connect code (backend auto-creates if doesn't exist)
   useEffect(() => {
     if (session?.token) {
       const loadCode = async () => {
         try {
           setLoadingCode(true)
-          const { getOrCreateConnectCode } = await import('../../lib/connectCodesClient')
-          const code = await getOrCreateConnectCode(session.token)
+          const { getConnectCode } = await import('../../lib/connectCodesClient')
+          const code = await getConnectCode(session.token)
           setUserConnectCode(code)
         } catch {
-          // Failed to get or create code - show null
+          // Failed to load code
           setUserConnectCode(null)
         } finally {
           setLoadingCode(false)
