@@ -2,7 +2,7 @@
 title: Feature Status Matrix
 description: Current status of all planned features across requirements, design, and tasks phases. Update this file when a spec phase changes status.
 type: feature-matrix
-last_updated: 2026-06-03
+last_updated: 2026-06-04
 status: active
 ---
 
@@ -29,6 +29,7 @@ One row per planned feature. Update the status columns as spec phases are approv
 | SPEC-003 | Speaker Directory | speakers | `approved` | `approved` | `implemented` | |
 | SPEC-004 | Conference Data API | api | `approved` | `approved` | `implemented` | ScraperProvider active with live jprime.io data |
 | SPEC-005 | Venue Information | venue | `approved` | `approved` | `implemented` | Static venue, travel, and accommodation details |
+| SPEC-006 | Auth — Magic Link / OTP | auth | `approved` | `approved` | `implemented` | Supabase OTP; self-hostable (env-var swap only) |
 
 ---
 
