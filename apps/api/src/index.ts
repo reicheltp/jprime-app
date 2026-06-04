@@ -4,6 +4,7 @@ import { registerSessionRoutes } from './routes/sessions'
 import { registerSpeakerRoutes } from './routes/speakers'
 import { registerHealthRoute } from './routes/health'
 import { registerAuthRoutes } from './routes/auth'
+import { registerProfileRoutes } from './routes/profile'
 import { ScraperProvider } from './providers/ScraperProvider'
 import { Cache } from './providers/cache'
 
@@ -15,6 +16,7 @@ const provider = new ScraperProvider('https://jprime.io', 10 * 60 * 1000, cache)
 registerCors(app)
 registerHealthRoute(app, cache)
 registerAuthRoutes(app)
+registerProfileRoutes(app)
 registerSessionRoutes(app, provider)
 registerSpeakerRoutes(app, provider)
 

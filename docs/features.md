@@ -29,6 +29,7 @@ One row per planned feature. Update the status columns as spec phases are approv
 | SPEC-003 | Speaker Directory | speakers | `approved` | `approved` | `implemented` | |
 | SPEC-004 | Conference Data API | api | `approved` | `approved` | `implemented` | ScraperProvider active with live jprime.io data |
 | SPEC-005 | Auth — Magic Link / OTP | auth | `approved` | `approved` | `implemented` | Hono API + Bun SQLite + nodemailer; no external services needed locally (see ADR-015) |
+| SPEC-006 | User Profile Management | auth | `approved` | `approved` | `implemented` | Profile tab; initials avatar; social links; GET + PUT /api/v1/profile |
 
 ---
 
