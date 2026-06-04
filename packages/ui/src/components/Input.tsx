@@ -1,20 +1,14 @@
-/**
- * JPrime Input Component
- * 
- * A reusable text input component that follows the JPrime design system.
- * Features glass-morphism styling, focus states, and error handling.
- */
-
 import React, { useState } from "react";
 import {
   TextInput,
   TextInputProps,
   View,
   Text,
-  Pressable,
+  StyleSheet,
+  StyleProp,
+  ViewStyle,
+  TextStyle,
 } from "react-native";
-import { clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
 
 export type InputVariant = "standard" | "glass" | "minimal";
 
@@ -25,32 +19,73 @@ interface InputProps extends TextInputProps {
   hint?: string;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
-  containerClassName?: string;
-  inputClassName?: string;
-  labelClassName?: string;
-  errorClassName?: string;
-  hintClassName?: string;
+  containerStyle?: StyleProp<ViewStyle>;
 }
 
-// Variant styles
-const variantStyles: Record<InputVariant, string> = {
-  standard: "bg-white border border-neutral-100 text-neutral-900 placeholder:text-neutral-400",
-  glass: "glass glass-border text-white placeholder:text-white/50",
-  minimal: "bg-transparent border-0 text-neutral-900 placeholder:text-neutral-400",
+const COLORS = {
+  cyan: "#39CBFB",
+  white: "#FFFFFF",
+  errorRed: "#FF4444",
+  glass: "rgba(255,255,255,0.07)",
+  glassFocused: "rgba(255,255,255,0.11)",
+  glassBorder: "rgba(255,255,255,0.13)",
+  mutedText: "rgba(255,255,255,0.45)",
+  labelText: "rgba(255,255,255,0.85)",
+  hintText: "rgba(255,255,255,0.38)",
+  dark: "#212529",
+} as const;
+
+const variantBase: Record<InputVariant, ViewStyle> = {
+  standard: {
+    backgroundColor: "#FFFFFF",
+    borderWidth: 1,
+    borderColor: "rgba(0,0,0,0.15)",
+    borderRadius: 10,
+  },
+  glass: {
+    backgroundColor: COLORS.glass,
+    borderWidth: 1,
+    borderColor: COLORS.glassBorder,
+    borderRadius: 10,
+  },
+  minimal: {
+    backgroundColor: "transparent",
+    borderBottomWidth: 1,
+    borderColor: COLORS.glassBorder,
+  },
 };
 
-// Focus styles for each variant
-const focusStyles: Record<InputVariant, string> = {
-  standard: "focus:border-cyan focus:shadow-glow-cyan-focus",
-  glass: "focus:border-cyan focus:shadow-glow-cyan-focus focus:bg-glass-strong",
-  minimal: "focus:border-cyan focus:border-b-2",
+const variantFocused: Record<InputVariant, ViewStyle> = {
+  standard: {
+    borderColor: COLORS.cyan,
+    shadowColor: COLORS.cyan,
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+  },
+  glass: {
+    backgroundColor: COLORS.glassFocused,
+    borderColor: COLORS.cyan,
+    shadowColor: COLORS.cyan,
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.25,
+    shadowRadius: 8,
+  },
+  minimal: {
+    borderColor: COLORS.cyan,
+  },
 };
 
-// Error styles
-const errorStyles: Record<InputVariant, string> = {
-  standard: "border-error shadow-glow-error",
-  glass: "border-error shadow-glow-error",
-  minimal: "border-error border-b-2",
+const variantError: Record<InputVariant, ViewStyle> = {
+  standard: { borderColor: COLORS.errorRed },
+  glass: { borderColor: COLORS.errorRed },
+  minimal: { borderColor: COLORS.errorRed },
+};
+
+const variantTextColor: Record<InputVariant, string> = {
+  standard: "#212529",
+  glass: COLORS.white,
+  minimal: COLORS.white,
 };
 
 export const Input: React.FC<InputProps> = ({
@@ -60,113 +95,139 @@ export const Input: React.FC<InputProps> = ({
   hint,
   leftIcon,
   rightIcon,
-  containerClassName,
-  inputClassName,
-  labelClassName,
-  errorClassName,
-  hintClassName,
-  className,
+  containerStyle,
+  style,
+  multiline,
+  numberOfLines,
   ...props
 }) => {
   const [isFocused, setIsFocused] = useState(false);
-
-  const baseStyles = "rounded-md h-11 transition-all duration-200";
-  const variantStyle = variantStyles[variant];
-  const focusStyle = focusStyles[variant];
   const hasError = !!error;
-  const errorStyle = hasError ? errorStyles[variant] : "";
 
-  const inputStyles = twMerge(
-    clsx(
-      baseStyles,
-      variantStyle,
-      focusStyle,
-      errorStyle,
-      "px-4 py-2",
-      className,
-      inputClassName
-    )
-  );
+  const inputWrapperStyle = [
+    styles.inputWrapper,
+    variantBase[variant],
+    isFocused && variantFocused[variant],
+    hasError && variantError[variant],
+    multiline && styles.multilineWrapper,
+  ];
+
+  const textColor = variantTextColor[variant];
+  const placeholderColor = variant === "standard" ? "rgba(0,0,0,0.35)" : COLORS.mutedText;
 
   return (
-    <View className={twMerge(clsx("mb-4", containerClassName))}>
+    <View style={[styles.container, containerStyle]}>
       {label && (
-        <Text
-          className={twMerge(
-            clsx(
-              "text-body font-medium mb-2 text-neutral-700",
-              labelClassName
-            )
-          )}
-        >
-          {label}
-        </Text>
+        <Text style={styles.label}>{label}</Text>
       )}
 
-      <View className="relative">
+      <View style={inputWrapperStyle}>
         {leftIcon && (
-          <View className="absolute left-3 top-1/2 -translate-y-1/2 z-10">
-            {leftIcon}
-          </View>
+          <View style={styles.leftIconWrap}>{leftIcon}</View>
         )}
 
         <TextInput
-          className={inputStyles}
+          style={[
+            styles.input,
+            { color: textColor },
+            leftIcon ? styles.inputWithLeft : null,
+            rightIcon ? styles.inputWithRight : null,
+            multiline && styles.multilineInput,
+            style as TextStyle,
+          ]}
+          placeholderTextColor={placeholderColor}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
-          placeholderTextColor="rgba(255, 255, 255, 0.5)"
-          style={[
-            { paddingLeft: leftIcon ? 40 : 16 },
-            { paddingRight: rightIcon ? 40 : 16 },
-          ]}
+          multiline={multiline}
+          numberOfLines={numberOfLines}
           {...props}
         />
 
         {rightIcon && (
-          <View className="absolute right-3 top-1/2 -translate-y-1/2 z-10">
-            {rightIcon}
-          </View>
+          <View style={styles.rightIconWrap}>{rightIcon}</View>
         )}
       </View>
 
       {hasError && error && (
-        <Text
-          className={twMerge(
-            clsx(
-              "text-caption text-error mt-1",
-              errorClassName
-            )
-          )}
-        >
-          {error}
-        </Text>
+        <Text style={styles.errorText}>{error}</Text>
       )}
 
       {hint && !hasError && (
-        <Text
-          className={twMerge(
-            clsx(
-              "text-caption text-neutral-400 mt-1",
-              hintClassName
-            )
-          )}
-        >
-          {hint}
-        </Text>
+        <Text style={styles.hintText}>{hint}</Text>
       )}
     </View>
   );
 };
 
-// Specific input variants for convenience
-export const StandardInput: React.FC<Omit<InputProps, "variant">> = (
-  props
-) => <Input variant="standard" {...props} />;
+const styles = StyleSheet.create({
+  container: {
+    marginBottom: 4,
+  },
+  label: {
+    fontSize: 13,
+    fontWeight: "600",
+    color: COLORS.labelText,
+    marginBottom: 7,
+    letterSpacing: 0.1,
+  },
+  inputWrapper: {
+    flexDirection: "row",
+    alignItems: "center",
+    minHeight: 46,
+  },
+  multilineWrapper: {
+    alignItems: "flex-start",
+    minHeight: 96,
+  },
+  input: {
+    flex: 1,
+    paddingHorizontal: 14,
+    paddingVertical: 11,
+    fontSize: 15,
+    fontWeight: "400",
+  },
+  inputWithLeft: {
+    paddingLeft: 8,
+  },
+  inputWithRight: {
+    paddingRight: 8,
+  },
+  multilineInput: {
+    paddingTop: 11,
+    textAlignVertical: "top",
+  },
+  leftIconWrap: {
+    paddingLeft: 12,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  rightIconWrap: {
+    paddingRight: 12,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  errorText: {
+    fontSize: 12,
+    color: COLORS.errorRed,
+    marginTop: 5,
+    fontWeight: "500",
+  },
+  hintText: {
+    fontSize: 12,
+    color: COLORS.hintText,
+    marginTop: 5,
+  },
+});
+
+// Convenience exports
+export const StandardInput: React.FC<Omit<InputProps, "variant">> = (props) => (
+  <Input variant="standard" {...props} />
+);
 
 export const GlassInput: React.FC<Omit<InputProps, "variant">> = (props) => (
   <Input variant="glass" {...props} />
 );
 
-export const MinimalInput: React.FC<Omit<InputProps, "variant">> = (
-  props
-) => <Input variant="minimal" {...props} />;
+export const MinimalInput: React.FC<Omit<InputProps, "variant">> = (props) => (
+  <Input variant="minimal" {...props} />
+);

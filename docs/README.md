@@ -14,6 +14,8 @@ status: active
 |---------------|---------------|
 | Technology choices (summary) | [architecture.md](architecture.md) |
 | Why a technology was chosen (full rationale) | [decisions/ADR-NNN-*.md](decisions/) |
+| **Exact StyleSheet values for UI components** | [**COMPONENTS.md**](COMPONENTS.md) |
+| High-level design tokens (colors, typography) | [../DESIGN.md](../DESIGN.md) |
 | Domain terminology | [glossary.md](glossary.md) |
 | Feature progress overview | [features.md](features.md) |
 | What a feature must do | `specs/SPEC-NNN-slug.md` |
@@ -38,6 +40,7 @@ See [specs/README.md](specs/README.md) for the frontmatter schema and templates.
 1. **Technology choices** — read [architecture.md](architecture.md) first; follow ADR links for full rationale.
 2. **Terminology** — check [glossary.md](glossary.md) before naming types, variables, or routes.
 3. **Before implementing** — find the feature's `SPEC-NNN-slug.md` for acceptance criteria and `SPEC-NNN-slug.design.md` for the agreed approach.
+4. **Building any UI** — read [COMPONENTS.md](COMPONENTS.md) for the exact StyleSheet values to use. Never use `className` on React Native components — it silently fails on device.
 4. **Parsing docs programmatically** — every doc has YAML frontmatter. Use the `status` field to filter:
    - `draft` — may change; do not implement against it
    - `in-review` — expect changes
