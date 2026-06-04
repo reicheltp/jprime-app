@@ -1,6 +1,5 @@
 {
   "lockfileVersion": 1,
-  "configVersion": 0,
   "workspaces": {
     "": {
       "name": "jprime-app",
@@ -109,6 +108,7 @@
         "tailwind-merge": "^2.2.0",
       },
       "devDependencies": {
+        "@testing-library/react-native": "^12.5.0",
         "@types/react": "~18.2.45",
         "eslint": "^8.56.0",
         "typescript": "^5.3.0",
