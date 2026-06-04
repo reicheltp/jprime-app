@@ -9,7 +9,8 @@ import {
 } from "react-native"
 import { Button, GlassCard } from "@jprime/ui"
 import { useState } from "react"
-import { requestOtp, verifyOtp, saveSession } from "../../lib/authClient"
+import { requestOtp, verifyOtp } from "../../lib/authClient"
+import { useAuth } from "../../providers/AuthProvider"
 
 export default function VerifyScreen() {
   const { email } = useLocalSearchParams<{ email: string }>()
@@ -17,6 +18,7 @@ export default function VerifyScreen() {
   const [codeError, setCodeError] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [isResending, setIsResending] = useState(false)
+  const { signIn } = useAuth()
 
   const handleVerify = async () => {
     if (code.length !== 6) {
@@ -27,8 +29,8 @@ export default function VerifyScreen() {
     setIsLoading(true)
     try {
       const session = await verifyOtp(email, code)
-      await saveSession(session)
-      router.replace("/(schedule)")
+      await signIn(session)
+      router.replace("/(profile)")
     } catch (err) {
       setCodeError(err instanceof Error ? err.message : "Invalid or expired code")
     } finally {

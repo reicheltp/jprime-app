@@ -1,7 +1,9 @@
 import React from "react";
 import { View, Text, Pressable, ScrollView, StyleSheet } from "react-native";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import { useAuth } from "../providers/AuthProvider";
+import { useProfile } from "../hooks/useProfile";
 
 type IoniconName = React.ComponentProps<typeof Ionicons>["name"];
 
@@ -11,7 +13,18 @@ const FEATURES: { icon: IoniconName; label: string }[] = [
   { icon: "wifi-outline", label: "Hybrid" },
 ];
 
+function displayName(email: string, profileName: string | null | undefined): string {
+  if (profileName) return profileName.split(" ")[0] ?? profileName;
+  const local = email.split("@")[0] ?? "";
+  return local.charAt(0).toUpperCase() + local.slice(1);
+}
+
 export default function HomeScreen() {
+  const { session } = useAuth();
+  const { data: profile } = useProfile();
+  const isSignedIn = !!session;
+  const name = isSignedIn ? displayName(session.user.email, profile?.displayName) : null;
+
   return (
     <ScrollView style={styles.scroll} contentContainerStyle={styles.container}>
       <View style={styles.hero}>
@@ -59,11 +72,21 @@ export default function HomeScreen() {
                 <Text style={styles.linkCyan}>Venue Info</Text>
               </Pressable>
             </Link>
-            <Link href="/(auth)/login" asChild>
-              <Pressable style={styles.linkBtn}>
-                <Text style={styles.linkMuted}>Sign In</Text>
+            {isSignedIn ? (
+              <Pressable
+                style={({ pressed }) => [styles.welcomeChip, pressed && styles.welcomeChipPressed]}
+                onPress={() => router.push("/(profile)")}
+              >
+                <Ionicons name="person-circle-outline" size={16} color="#39CBFB" />
+                <Text style={styles.welcomeText} numberOfLines={1}>Welcome, {name}</Text>
               </Pressable>
-            </Link>
+            ) : (
+              <Link href="/(auth)/login" asChild>
+                <Pressable style={styles.linkBtn}>
+                  <Text style={styles.linkMuted}>Sign In</Text>
+                </Pressable>
+              </Link>
+            )}
           </View>
 
           {/* Feature highlights */}
@@ -212,6 +235,29 @@ const styles = StyleSheet.create({
     color: "#808080",
     fontSize: 14,
     fontWeight: "500",
+  },
+  welcomeChip: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 6,
+    minHeight: 44,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    backgroundColor: "rgba(57, 203, 251, 0.08)",
+    borderRadius: 22,
+    borderWidth: 1,
+    borderColor: "rgba(57, 203, 251, 0.25)",
+  },
+  welcomeChipPressed: {
+    backgroundColor: "rgba(57, 203, 251, 0.15)",
+  },
+  welcomeText: {
+    color: "#39CBFB",
+    fontSize: 13,
+    fontWeight: "600",
+    flexShrink: 1,
   },
   featureRow: {
     flexDirection: "row",
