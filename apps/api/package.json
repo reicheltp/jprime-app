@@ -14,10 +14,12 @@
     "@hono/node-server": "^1.13.7",
     "@jprime/types": "workspace:*",
     "hono": "^4.12.23",
-    "node-html-parser": "^7.1.0"
+    "node-html-parser": "^7.1.0",
+    "nodemailer": "^8.0.10"
   },
   "devDependencies": {
     "@types/bun": "latest",
+    "@types/nodemailer": "^8.0.0",
     "typescript": "^5.3.0"
   }
 }

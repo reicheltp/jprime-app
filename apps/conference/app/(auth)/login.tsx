@@ -8,7 +8,7 @@ import {
 } from "react-native"
 import { Button, GlassCard, Input } from "@jprime/ui"
 import { useState } from "react"
-import { supabase } from "../../lib/supabase"
+import { requestOtp } from "../../lib/authClient"
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("")
@@ -31,16 +31,17 @@ export default function LoginScreen() {
   const handleSendCode = async () => {
     if (!validateEmail()) return
     setIsLoading(true)
-    const { error } = await supabase.auth.signInWithOtp({
-      email: email.trim().toLowerCase(),
-      options: { shouldCreateUser: true },
-    })
-    setIsLoading(false)
-    if (error) {
-      setEmailError(error.message)
-      return
+    try {
+      await requestOtp(email.trim().toLowerCase())
+      router.push({
+        pathname: "/(auth)/verify",
+        params: { email: email.trim().toLowerCase() },
+      })
+    } catch (err) {
+      setEmailError(err instanceof Error ? err.message : "Failed to send code")
+    } finally {
+      setIsLoading(false)
     }
-    router.push({ pathname: "/(auth)/verify", params: { email: email.trim().toLowerCase() } })
   }
 
   return (
@@ -89,7 +90,8 @@ export default function LoginScreen() {
           </GlassCard>
 
           <Text style={styles.hint}>
-            A 6-digit code will be sent to your inbox. It expires after 1 hour.
+            A 6-digit code will be sent to your inbox. It expires after 10
+            minutes.
           </Text>
         </View>
       </View>
@@ -98,9 +100,7 @@ export default function LoginScreen() {
 }
 
 const styles = StyleSheet.create({
-  keyboardView: {
-    flex: 1,
-  },
+  keyboardView: { flex: 1 },
   container: {
     flex: 1,
     justifyContent: "center",
@@ -108,14 +108,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#212529",
     padding: 24,
   },
-  content: {
-    width: "100%",
-    maxWidth: 400,
-  },
-  headerCard: {
-    marginBottom: 24,
-    alignItems: "center",
-  },
+  content: { width: "100%", maxWidth: 400 },
+  headerCard: { marginBottom: 24, alignItems: "center" },
   title: {
     fontSize: 24,
     fontWeight: "bold",
@@ -129,12 +123,8 @@ const styles = StyleSheet.create({
     marginTop: 8,
     lineHeight: 20,
   },
-  formCard: {
-    padding: 24,
-  },
-  button: {
-    marginTop: 16,
-  },
+  formCard: { padding: 24 },
+  button: { marginTop: 16 },
   hint: {
     fontSize: 12,
     color: "rgba(255,255,255,0.4)",

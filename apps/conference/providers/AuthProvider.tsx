@@ -4,13 +4,17 @@ import {
   useEffect,
   useState,
   type PropsWithChildren,
-} from "react"
-import type { Session, User } from "@supabase/supabase-js"
-import { supabase } from "../lib/supabase"
+} from 'react'
+import {
+  type AuthSession,
+  type AuthUser,
+  clearSession,
+  loadSession,
+} from '../lib/authClient'
 
 interface AuthContextType {
-  session: Session | null
-  user: User | null
+  session: AuthSession | null
+  user: AuthUser | null
   isLoading: boolean
   signOut: () => Promise<void>
 }
@@ -23,27 +27,18 @@ const AuthContext = createContext<AuthContextType>({
 })
 
 export function AuthProvider({ children }: PropsWithChildren) {
-  const [session, setSession] = useState<Session | null>(null)
+  const [session, setSession] = useState<AuthSession | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      setSession(data.session)
-      setIsLoading(false)
-    })
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, newSession) => {
-      setSession(newSession)
-      setIsLoading(false)
-    })
-
-    return () => subscription.unsubscribe()
+    loadSession()
+      .then(setSession)
+      .finally(() => setIsLoading(false))
   }, [])
 
   const signOut = async () => {
-    await supabase.auth.signOut()
+    await clearSession()
+    setSession(null)
   }
 
   return (
