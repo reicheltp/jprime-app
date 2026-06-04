@@ -57,6 +57,11 @@ coverage/
 # TypeScript
 *.tsbuildinfo
 
+# SQLite databases
+*.db
+*.db-shm
+*.db-wal
+
 # Spec files (if generated)
 *.spec.ts
 *.spec.tsx

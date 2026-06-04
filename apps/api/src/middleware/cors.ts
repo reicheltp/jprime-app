@@ -9,11 +9,12 @@ export function registerCors(app: Hono): void {
   app.use(
     '*',
     cors({
-      origin: allowedOrigins.length === 1 && allowedOrigins[0] === '*'
-        ? '*'
-        : (origin) => (allowedOrigins.includes(origin) ? origin : allowedOrigins[0] ?? ''),
-      allowMethods: ['GET', 'OPTIONS'],
-      allowHeaders: ['Content-Type', 'Accept'],
+      origin:
+        allowedOrigins.length === 1 && allowedOrigins[0] === '*'
+          ? '*'
+          : (origin) => (allowedOrigins.includes(origin) ? origin : (allowedOrigins[0] ?? '')),
+      allowMethods: ['GET', 'POST', 'OPTIONS'],
+      allowHeaders: ['Content-Type', 'Accept', 'Authorization'],
       maxAge: 600,
     })
   )

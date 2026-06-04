@@ -9,7 +9,7 @@ import {
 } from "react-native"
 import { Button, GlassCard } from "@jprime/ui"
 import { useState } from "react"
-import { supabase } from "../../lib/supabase"
+import { requestOtp, verifyOtp, saveSession } from "../../lib/authClient"
 
 export default function VerifyScreen() {
   const { email } = useLocalSearchParams<{ email: string }>()
@@ -25,28 +25,28 @@ export default function VerifyScreen() {
     }
     setCodeError("")
     setIsLoading(true)
-    const { error } = await supabase.auth.verifyOtp({
-      email,
-      token: code,
-      type: "email",
-    })
-    setIsLoading(false)
-    if (error) {
-      setCodeError(error.message)
-      return
+    try {
+      const session = await verifyOtp(email, code)
+      await saveSession(session)
+      router.replace("/(schedule)")
+    } catch (err) {
+      setCodeError(err instanceof Error ? err.message : "Invalid or expired code")
+    } finally {
+      setIsLoading(false)
     }
-    router.replace("/(schedule)")
   }
 
   const handleResend = async () => {
     setIsResending(true)
-    await supabase.auth.signInWithOtp({
-      email,
-      options: { shouldCreateUser: true },
-    })
-    setIsResending(false)
-    setCode("")
-    setCodeError("")
+    try {
+      await requestOtp(email)
+      setCode("")
+      setCodeError("")
+    } catch {
+      // silently ignore resend errors; user can try again
+    } finally {
+      setIsResending(false)
+    }
   }
 
   return (
@@ -60,9 +60,7 @@ export default function VerifyScreen() {
         <View style={styles.content}>
           <GlassCard style={styles.headerCard}>
             <Text style={styles.title}>Check Your Email</Text>
-            <Text style={styles.subtitle}>
-              We sent a 6-digit code to
-            </Text>
+            <Text style={styles.subtitle}>We sent a 6-digit code to</Text>
             <Text style={styles.emailText}>{email}</Text>
           </GlassCard>
 
@@ -123,9 +121,7 @@ export default function VerifyScreen() {
 }
 
 const styles = StyleSheet.create({
-  keyboardView: {
-    flex: 1,
-  },
+  keyboardView: { flex: 1 },
   container: {
     flex: 1,
     justifyContent: "center",
@@ -133,14 +129,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#212529",
     padding: 24,
   },
-  content: {
-    width: "100%",
-    maxWidth: 400,
-  },
-  headerCard: {
-    marginBottom: 24,
-    alignItems: "center",
-  },
+  content: { width: "100%", maxWidth: 400 },
+  headerCard: { marginBottom: 24, alignItems: "center" },
   title: {
     fontSize: 24,
     fontWeight: "bold",
@@ -160,9 +150,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 4,
   },
-  formCard: {
-    padding: 24,
-  },
+  formCard: { padding: 24 },
   label: {
     fontSize: 14,
     fontWeight: "600",
@@ -182,23 +170,14 @@ const styles = StyleSheet.create({
     paddingVertical: 18,
     paddingHorizontal: 24,
   },
-  codeInputError: {
-    borderColor: "#E83283",
-  },
+  codeInputError: { borderColor: "#E83283" },
   errorText: {
     color: "#E83283",
     fontSize: 12,
     marginTop: 8,
     textAlign: "center",
   },
-  verifyButton: {
-    marginTop: 20,
-  },
-  resendButton: {
-    marginTop: 8,
-  },
-  backButton: {
-    marginTop: 16,
-    alignSelf: "center",
-  },
+  verifyButton: { marginTop: 20 },
+  resendButton: { marginTop: 8 },
+  backButton: { marginTop: 16, alignSelf: "center" },
 })
