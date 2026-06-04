@@ -6,6 +6,10 @@ import type { QRCodeData } from '@jprime/types'
 
 const QR_PREFIX = 'JPRIME_CONN:'
 
+// Characters allowed in connection codes (excluding similar-looking: 0,1,O,I,L)
+const CONNECT_CODE_CHARS = '23456789ABCDEFGHJKMNPQRSTUVWXYZ'
+const CONNECT_CODE_LENGTH = 5
+
 /**
  * Generate QR code data string from email and displayName
  * Format: JPRIME_CONN:{"email":"...","displayName":"..."}
@@ -71,4 +75,27 @@ export function extractEmailFromQRCode(qrString: string): string | null {
  */
 export function createShareableQRData(email: string, displayName: string): string {
   return generateQRCodeData(email, displayName)
+}
+
+/**
+ * Generate a random 5-character connection code
+ * Uses characters that are easily distinguishable (no 0,1,O,I,L)
+ * Format: 5 characters from 2-9, A-H, J-Z (case-insensitive but stored uppercase)
+ */
+export function generateConnectCode(): string {
+  let code = ''
+  for (let i = 0; i < CONNECT_CODE_LENGTH; i++) {
+    const randomIndex = Math.floor(Math.random() * CONNECT_CODE_CHARS.length)
+    code += CONNECT_CODE_CHARS[randomIndex]
+  }
+  return code
+}
+
+/**
+ * Validate a connection code format
+ * Must be exactly 5 characters, using only allowed characters
+ */
+export function isValidConnectCode(code: string): boolean {
+  if (code.length !== CONNECT_CODE_LENGTH) return false
+  return [...code.toUpperCase()].every(char => CONNECT_CODE_CHARS.includes(char))
 }

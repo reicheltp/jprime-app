@@ -18,7 +18,7 @@ import {
   getAllConnections,
 } from '@jprime/utils'
 import type { Connection, AttendeeProfile } from '@jprime/types'
-import { ConnectionCard, QRCodeDisplay } from '@jprime/ui'
+import { ConnectionCard, QRCodeDisplay, CodeDisplay } from '@jprime/ui'
 import { useAuth } from '../../providers/AuthProvider'
 import { useProfile } from '../../hooks/useProfile'
 
@@ -47,10 +47,32 @@ export default function ConnectionsScreen() {
   const [incoming, setIncoming] = useState<Connection[]>([])
   const [loading, setLoading] = useState(true)
   const [refreshing, setRefreshing] = useState(false)
+  const [userConnectCode, setUserConnectCode] = useState<string | null>(null)
+  const [loadingCode, setLoadingCode] = useState(false)
 
-  // Get user's own QR code data
+  // Get user's own data
   const userDisplayName = userProfile?.displayName ?? session?.user.email.split('@')[0] ?? ''
   const userEmail = session?.user.email ?? ''
+
+  // Load user's connect code (or create if doesn't exist)
+  useEffect(() => {
+    if (session?.token) {
+      const loadCode = async () => {
+        try {
+          setLoadingCode(true)
+          const { getOrCreateConnectCode } = await import('../../lib/connectCodesClient')
+          const code = await getOrCreateConnectCode(session.token)
+          setUserConnectCode(code)
+        } catch {
+          // Failed to get or create code - show null
+          setUserConnectCode(null)
+        } finally {
+          setLoadingCode(false)
+        }
+      }
+      loadCode()
+    }
+  }, [session?.token])
 
   // Load connections
   const loadConnections = useCallback(async () => {
@@ -109,14 +131,35 @@ export default function ConnectionsScreen() {
 
   const ListHeader = () => (
     <View style={styles.headerContainer}>
-      {/* User's QR Code */}
-      <View style={styles.qrSection}>
-        <QRCodeDisplay email={userEmail} displayName={userDisplayName} size={180} />
+      {/* User's QR Code and Connect Code */}
+      <View style={styles.codeSection}>
+        <View style={styles.qrAndCodeRow}>
+          <QRCodeDisplay email={userEmail} displayName={userDisplayName} size={140} showLabel={false} />
+          {userConnectCode && !loadingCode ? (
+            <CodeDisplay code={userConnectCode} size="small" showLabel={false} showCopyButton={true} />
+          ) : (
+            <View style={styles.codePlaceholder}>
+              <ActivityIndicator size="small" color="#39CBFB" />
+              <Text style={styles.codePlaceholderText}>Loading code...</Text>
+            </View>
+          )}
+        </View>
+        
+        <View style={styles.shareInfo}>
+          <Text style={styles.shareTitle}>Share to Connect</Text>
+          <Text style={styles.shareText}>
+            {userConnectCode 
+              ? `Share your QR code or code: ${userConnectCode.toUpperCase()}`
+              : 'Share your QR code for others to scan'
+            }
+          </Text>
+        </View>
+        
         <Pressable
           style={styles.profileBtn}
           onPress={() => router.push('/(profile)')}
         >
-          <Ionicons name="person-circle-outline" size={24} color="#39CBFB" />
+          <Ionicons name="person-circle-outline" size={20} color="#39CBFB" />
           <Text style={styles.profileBtnText}>Profile</Text>
         </Pressable>
       </View>
@@ -142,7 +185,10 @@ export default function ConnectionsScreen() {
             You haven't connected with anyone yet
           </Text>
           <Text style={styles.emptyStateSubtext}>
-            Scan someone's QR code to connect
+            {userConnectCode 
+              ? `Enter someone's code or scan their QR`
+              : 'Scan someone\'s QR code to connect'
+            }
           </Text>
         </View>
       )}
@@ -159,7 +205,10 @@ export default function ConnectionsScreen() {
             No one has connected with you yet
           </Text>
           <Text style={styles.emptyStateSubtext}>
-            Share your QR code for others to scan
+            {userConnectCode 
+              ? `Share your code or QR for others to connect`
+              : 'Share your QR code for others to scan'
+            }
           </Text>
         </View>
       )}
@@ -244,10 +293,47 @@ const styles = StyleSheet.create({
   headerContainer: {
     marginBottom: 16,
   },
-  qrSection: {
+  codeSection: {
     alignItems: 'center',
     marginBottom: 24,
-    gap: 16,
+    gap: 14,
+  },
+  qrAndCodeRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 20,
+  },
+  shareInfo: {
+    alignItems: 'center',
+    marginTop: 8,
+  },
+  shareTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#FFFFFF',
+    fontFamily: 'Poppins-600',
+    marginBottom: 4,
+  },
+  shareText: {
+    fontSize: 12,
+    color: 'rgba(255, 255, 255, 0.4)',
+    fontFamily: 'Poppins-400',
+  },
+  codePlaceholder: {
+    width: 120,
+    height: 120,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.03)',
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.08)',
+  },
+  codePlaceholderText: {
+    marginTop: 8,
+    fontSize: 11,
+    color: 'rgba(255, 255, 255, 0.3)',
+    fontFamily: 'Poppins-400',
   },
   profileBtn: {
     flexDirection: 'row',

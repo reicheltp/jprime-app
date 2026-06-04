@@ -11,6 +11,7 @@ updated: 2026-06-04
 # Tasks: Attendee Connections
 
 > Prerequisite: `SPEC-008-attendee-connections.design.md` must be `status: approved`.
+> Note: This feature is extended by SPEC-009 Connect Codes which adds 5-character code support as an alternative to QR scanning.
 
 ## Checklist
 
@@ -45,6 +46,7 @@ updated: 2026-06-04
   - [ ] Add connection and show success/error feedback
   - [ ] Navigate back to connections page on success
   - _Requirements: SPEC-008 #1, #2, #3, #4_
+  - _Extended by: SPEC-009 (add code entry toggle to this screen)_
 
 - [ ] **6. Create Connections page (`apps/conference/app/(connections)/index.tsx`)**
   - [ ] Display user's own QR code at top of page
@@ -55,6 +57,7 @@ updated: 2026-06-04
   - [ ] Show full profile information for each attendee
   - [ ] Handle empty states for both lists
   - _Requirements: SPEC-008 #5, #6, #7, #8_
+  - _Extended by: SPEC-009 (add user's connect code display alongside QR)_
 
 - [ ] **7. Create connections layout (`apps/conference/app/(connections)/_layout.tsx`)**
   - [ ] Set up route group for connections

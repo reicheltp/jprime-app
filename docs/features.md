@@ -32,6 +32,7 @@ One row per planned feature. Update the status columns as spec phases are approv
 | SPEC-006 | Auth — Magic Link / OTP | auth | `approved` | `approved` | `implemented` | Supabase OTP; self-hostable (env-var swap only) |
 | SPEC-007 | User Profile Management | auth | `approved` | `approved` | `implemented` | Profile tab; initials avatar; social links; GET + PUT /api/v1/profile |
 | SPEC-008 | Attendee Connections | connections | `approved` | `approved` | `implemented` | QR code scanning, bidirectional connection lists, local storage |
+| SPEC-009 | Connect Codes | connections | `draft` | `draft` | `draft` | 5-character code alternative to QR, server-generated unique codes, manual entry |
 
 ---
 

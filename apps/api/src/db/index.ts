@@ -15,6 +15,7 @@ export interface UserWithProfile extends User {
   twitter_url: string | null
   github_url: string | null
   website_url: string | null
+  connection_code: string | null
 }
 
 export interface OtpToken {
@@ -35,17 +36,18 @@ db.exec(`
   PRAGMA journal_mode=WAL;
 
   CREATE TABLE IF NOT EXISTS users (
-    id           TEXT PRIMARY KEY,
-    email        TEXT UNIQUE NOT NULL,
-    display_name TEXT,
-    company      TEXT,
-    bio          TEXT,
-    avatar_url   TEXT,
-    linkedin_url TEXT,
-    twitter_url  TEXT,
-    github_url   TEXT,
-    website_url  TEXT,
-    created_at   INTEGER NOT NULL
+    id              TEXT PRIMARY KEY,
+    email           TEXT UNIQUE NOT NULL,
+    display_name    TEXT,
+    company         TEXT,
+    bio             TEXT,
+    avatar_url      TEXT,
+    linkedin_url    TEXT,
+    twitter_url     TEXT,
+    github_url      TEXT,
+    website_url     TEXT,
+    connection_code TEXT,
+    created_at      INTEGER NOT NULL
   );
 
   CREATE TABLE IF NOT EXISTS otp_tokens (
@@ -71,6 +73,7 @@ const profileColumns = [
   'twitter_url TEXT',
   'github_url TEXT',
   'website_url TEXT',
+  'connection_code TEXT',
 ]
 for (const col of profileColumns) {
   try { db.exec(`ALTER TABLE users ADD COLUMN ${col}`) } catch { /* already exists */ }

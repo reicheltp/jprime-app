@@ -12,6 +12,7 @@ export interface AttendeeProfile {
   twitterUrl: string | null
   githubUrl: string | null
   websiteUrl: string | null
+  connectCode: string | null // NEW: 5-character code for connections (SPEC-009)
 }
 
 export enum ConnectionType {
@@ -25,12 +26,28 @@ export interface Connection {
   displayName: string
   connectedAt: number // timestamp when connection was made
   connectionType: ConnectionType
+  connectCode?: string // NEW: Optional code of the connected attendee (SPEC-009)
 }
 
 export interface QRCodeData {
   email: string
   displayName: string
 }
+
+// SPEC-009 Connect Codes types
+export interface ConnectCodeLookupResult {
+  attendeeId: string
+  email: string
+  displayName: string
+  connectCode: string
+}
+
+export interface ConnectCodeData {
+  code: string // 5-character code
+}
+
+// Regex pattern for connect code validation
+export const CONNECT_CODE_PATTERN = /^[2-9A-HJ-Z]{5}$/i
 
 // Existing types below
 export interface SpeakerRef {

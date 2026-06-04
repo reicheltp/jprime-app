@@ -47,3 +47,7 @@ updated: 2026-06-04
 - Search/filter functionality in connections list
 - Exporting connections list
 - Social media integration for connections
+
+## Related Features
+
+- **SPEC-009 Connect Codes**: Adds 5-character code as alternative to QR code scanning. This feature extends the connections system with manual code entry support.

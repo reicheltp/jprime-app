@@ -29,6 +29,8 @@ apps/conference/app → (connections)/ route with index, scan, and profile scree
 
 The connections feature is client-side only. It reads attendee profile data from the existing conference data (SPEC-004) and stores connection relationships locally using AsyncStorage. QR codes encode email and displayName which are used as lookup keys to find the full profile in the conference data.
 
+**Note:** SPEC-009 Connect Codes extends this feature by adding server-generated 5-character codes as an alternative connection method. Code-based connections require network connectivity for code lookup but use the same local storage mechanism for connection persistence.
+
 ## Components and Interfaces
 
 ### New Types (`@jprime/types`)

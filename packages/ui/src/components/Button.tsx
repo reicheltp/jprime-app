@@ -2,6 +2,7 @@ import React from "react";
 import {
   Pressable,
   Text,
+  View,
   PressableProps,
   StyleSheet,
   StyleProp,
@@ -43,6 +44,7 @@ const containerBase: ViewStyle = {
   justifyContent: "center",
   borderRadius: 10,
   overflow: "hidden",
+  gap: 8,
 };
 
 const variantContainers: Record<ButtonVariant, ViewStyle> = {
@@ -123,7 +125,7 @@ export const Button: React.FC<ButtonProps> = ({
       ) : (
         <>
           {leftIcon && (
-            <Text style={[styles.iconGap, variantText[variant]]}>{leftIcon}</Text>
+            <View style={styles.iconWrapper}>{leftIcon}</View>
           )}
           <Text
             style={[
@@ -137,7 +139,7 @@ export const Button: React.FC<ButtonProps> = ({
             {children}
           </Text>
           {rightIcon && (
-            <Text style={[styles.iconGapLeft, variantText[variant]]}>{rightIcon}</Text>
+            <View style={styles.iconWrapper}>{rightIcon}</View>
           )}
         </>
       )}
@@ -161,11 +163,9 @@ const styles = StyleSheet.create({
   disabledText: {
     color: "rgba(255,255,255,0.4)",
   },
-  iconGap: {
-    marginRight: 8,
-  },
-  iconGapLeft: {
-    marginLeft: 8,
+  iconWrapper: {
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 
