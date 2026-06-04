@@ -8,7 +8,7 @@ import { SessionCard, FilterBar, EmptyState } from '@jprime/ui'
 import type { Session } from '@jprime/types'
 
 export default function ScheduleScreen() {
-  const [filter, setFilter] = useState<FilterState>({ day: null, track: null })
+  const [filter, setFilter] = useState<FilterState>({ day: null, track: null, bookmarksOnly: false })
   const { data: sessions, isLoading, isError, refetch } = useSessions()
   const { data: bookmarks } = useBookmarks()
 
@@ -36,7 +36,7 @@ export default function ScheduleScreen() {
   }
 
   const { days, tracks } = deriveFilterOptions(sessions)
-  const filtered = filterSessions(sessions, filter)
+  const filtered = filterSessions(sessions, filter, bookmarks)
 
   function renderItem({ item }: { item: Session }) {
     return (
@@ -54,7 +54,7 @@ export default function ScheduleScreen() {
       {filtered.length === 0 ? (
         <EmptyState
           message="No sessions found."
-          action={{ label: 'Clear filters', onPress: () => setFilter({ day: null, track: null }) }}
+          action={{ label: 'Clear filters', onPress: () => setFilter({ day: null, track: null, bookmarksOnly: false }) }}
         />
       ) : (
         <FlatList

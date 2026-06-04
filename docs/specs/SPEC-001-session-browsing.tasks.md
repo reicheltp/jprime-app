@@ -3,9 +3,9 @@ id: SPEC-001
 title: Session Browsing Tasks
 feature: session-browsing
 type: tasks
-status: draft
+status: implemented
 created: 2026-06-03
-updated: 2026-06-03
+updated: 2026-06-04
 ---
 
 # Tasks: Session Browsing
@@ -56,6 +56,26 @@ updated: 2026-06-03
   - [x] `deriveFilterOptions(sessions)` — returns `{ days: string[], tracks: string[] }` from the full list
   - [x] Write unit tests for all filter combinations including null (= all)
   - _Requirements: SPEC-001 #5, #6, #7_
+
+- [x] 7. Add bookmarks filter to session filtering
+  - [x] Extend `FilterState` interface with `bookmarksOnly: boolean`
+  - [x] Update `filterSessions()` to accept optional `bookmarks: Set<string>` parameter
+  - [x] Add filter logic for bookmarksOnly in `filterSessions()`
+  - [x] Write unit tests for bookmarksOnly filter and combined filters
+  - _Requirements: SPEC-001 #7_
+
+- [x] 8. Update FilterBar to include bookmarks toggle
+  - [x] Add "Bookmarked" chip to `FilterBar` component
+  - [x] Update `hasActiveFilter` to include `bookmarksOnly`
+  - [x] Update Clear button to reset `bookmarksOnly` to false
+  - [x] Write unit tests for bookmarks filter interaction
+  - _Requirements: SPEC-001 #7_
+
+- [x] 9. Wire bookmarks filter into ScheduleScreen
+  - [x] Initialize filter state with `bookmarksOnly: false`
+  - [x] Pass `bookmarks` from `useBookmarks()` to `filterSessions()`
+  - [x] Update Clear action to reset all three filters
+  - _Requirements: SPEC-001 #7, #8_
 
 - [x] 7. Build `ScheduleScreen`
   - [x] Create `apps/conference/app/(schedule)/_layout.tsx` (Stack navigator)

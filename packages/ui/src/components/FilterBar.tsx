@@ -10,7 +10,7 @@ interface FilterBarProps {
 }
 
 export const FilterBar: React.FC<FilterBarProps> = ({ days, tracks, value, onChange }) => {
-  const hasActiveFilter = value.day !== null || value.track !== null
+  const hasActiveFilter = value.day !== null || value.track !== null || value.bookmarksOnly
 
   return (
     <View style={styles.container}>
@@ -51,11 +51,22 @@ export const FilterBar: React.FC<FilterBarProps> = ({ days, tracks, value, onCha
           )
         })}
 
+        <View style={styles.divider} />
+
+        <Pressable
+          onPress={() => onChange({ ...value, bookmarksOnly: !value.bookmarksOnly })}
+          style={[styles.chip, value.bookmarksOnly ? styles.chipActiveCyan : styles.chipInactive]}
+        >
+          <Text style={[styles.chipText, value.bookmarksOnly ? styles.chipTextActive : styles.chipTextInactive]}>
+            Bookmarked
+          </Text>
+        </Pressable>
+
         {hasActiveFilter && (
           <>
             <View style={styles.divider} />
             <Pressable
-              onPress={() => onChange({ day: null, track: null })}
+              onPress={() => onChange({ day: null, track: null, bookmarksOnly: false })}
               style={styles.chipClear}
             >
               <Text style={styles.chipTextClear}>✕ Clear</Text>

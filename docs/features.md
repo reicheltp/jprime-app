@@ -24,10 +24,11 @@ One row per planned feature. Update the status columns as spec phases are approv
 
 | ID | Feature | Domain | Requirements | Design | Tasks | Notes |
 |----|---------|--------|-------------|--------|-------|-------|
-| SPEC-001 | Session Browsing | schedule | `approved` | `approved` | `implemented` | |
+| SPEC-001 | Session Browsing | schedule | `approved` | `approved` | `implemented` | Added bookmarks filter to schedule page |
 | SPEC-002 | My Schedule | schedule | `approved` | `approved` | `implemented` | Device-local bookmarks; auth sync deferred |
 | SPEC-003 | Speaker Directory | speakers | `approved` | `approved` | `implemented` | |
 | SPEC-004 | Conference Data API | api | `approved` | `approved` | `implemented` | ScraperProvider active with live jprime.io data |
+| SPEC-005 | Venue Information | venue | `approved` | `approved` | `implemented` | Static venue, travel, and accommodation details |
 
 ---
 

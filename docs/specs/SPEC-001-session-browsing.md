@@ -5,7 +5,7 @@ feature: session-browsing
 type: requirements
 status: approved
 created: 2026-06-03
-updated: 2026-06-03
+updated: 2026-06-04
 conference_scale: ~1100 attendees, 2 days, 3 tracks
 ---
 
@@ -21,16 +21,19 @@ conference_scale: ~1100 attendees, 2 days, 3 tracks
 4. **WHEN** the attendee taps a session **THEN** the system **SHALL** navigate to a session detail screen showing: title, speaker(s), track, room, start time, end time, and description.
 5. **WHEN** the attendee selects a track filter **THEN** the system **SHALL** show only sessions belonging to that track. The conference has three tracks: two main session tracks and one workshop track.
 6. **WHEN** the attendee selects a day filter **THEN** the system **SHALL** show only sessions scheduled on that day. The conference runs across two days.
-7. **WHEN** the attendee clears all filters **THEN** the system **SHALL** show the full unfiltered session list.
-8. **WHERE** a session has a type of `break` **THEN** the system **SHALL** display it in the schedule but **SHALL NOT** show it in speaker listings.
-9. **WHEN** the attendee navigates away from a session detail and back **THEN** the system **SHALL** restore the previous filter state.
+7. **WHEN** the attendee selects the bookmarks filter **THEN** the system **SHALL** show only sessions that the attendee has bookmarked.
+8. **WHEN** the attendee clears all filters **THEN** the system **SHALL** show the full unfiltered session list.
+9. **WHERE** a session has a type of `break` **THEN** the system **SHALL** display it in the schedule but **SHALL NOT** show it in speaker listings.
+10. **WHEN** the attendee navigates away from a session detail and back **THEN** the system **SHALL** restore the previous filter state.
 
 ## Edge Cases
 
-- **Empty track/day**: If a filter combination returns no sessions, show an empty-state message (e.g. "No sessions found").
+- **Empty track/day**: If a filter combination returns no sessions, show an empty-state message (e.g. "No sessions found.").
+- **Empty bookmarks**: If the bookmarks filter is active and the attendee has no bookmarked sessions, show an empty-state message (e.g. "No bookmarked sessions.").
 - **Missing description**: If a session has no description in the API response, omit the description section gracefully without error.
 - **Multiple speakers**: Sessions with more than one speaker shall list all speakers' names.
-- **Session overlaps**: Multiple sessions in the same slot are valid — they run in different rooms.
+- **Session overlaps**: Multiple sessions in the same slot are valid - they run in different rooms.
+- **Combined filters**: The bookmarks filter shall work in combination with day and track filters.
 
 ## Constraints
 

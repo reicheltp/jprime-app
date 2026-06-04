@@ -52,6 +52,7 @@ Owns filter state. Passes filtered sessions to `SessionList`.
 type FilterState = {
   day: string | null    // ISO date or null (= all days)
   track: string | null  // track name or null (= all tracks)
+  bookmarksOnly: boolean // true = show only bookmarked sessions
 }
 ```
 
@@ -88,7 +89,7 @@ interface FilterBarProps {
 }
 ```
 
-Renders day chips (Day 1 / Day 2) and track pills. A "clear" action resets both to `null`.
+Renders day chips (Day 1 / Day 2), track pills, and a "Bookmarked" toggle. A "clear" action resets all filters to their default state.
 
 ### `SessionCard` (`packages/ui/src/components/SessionCard.tsx`)
 
@@ -140,10 +141,10 @@ React Query's `isLoading`, `isError`, `isFetching` flags drive these states.
 
 ## Testing Strategy
 
-- Unit test `FilterBar` — snapshot + filter change callbacks
-- Unit test client-side filter logic (pure function that filters `Session[]` by day and track)
+- Unit test `FilterBar` — snapshot + filter change callbacks (including bookmarks toggle)
+- Unit test client-side filter logic (pure function that filters `Session[]` by day, track, and bookmarks)
 - Integration test `ScheduleScreen` with a mocked `useSessions` returning fixture data
-- Integration test filter interactions (select day, select track, clear)
+- Integration test filter interactions (select day, select track, select bookmarks, clear, combined filters)
 
 ---
 
