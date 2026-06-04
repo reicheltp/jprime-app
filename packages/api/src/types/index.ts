@@ -1,1 +1,1 @@
-export type { Session, Speaker, SessionRef, SpeakerRef, SessionType } from '@jprime/types'
+export type { Session, Speaker, SessionRef, SpeakerRef, SessionType, AttendeeProfile, Connection, ConnectionType, QRCodeData } from '@jprime/types'

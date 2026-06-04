@@ -4,6 +4,7 @@ import { Link, router } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { useAuth } from "../providers/AuthProvider";
 import { useProfile } from "../hooks/useProfile";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 type IoniconName = React.ComponentProps<typeof Ionicons>["name"];
 
@@ -22,13 +23,15 @@ function displayName(email: string, profileName: string | null | undefined): str
 export default function HomeScreen() {
   const { session } = useAuth();
   const { data: profile } = useProfile();
+  const insets = useSafeAreaInsets();
   const isSignedIn = !!session;
   const name = isSignedIn ? displayName(session.user.email, profile?.displayName) : null;
 
   return (
-    <ScrollView style={styles.scroll} contentContainerStyle={styles.container}>
-      <View style={styles.hero}>
-        <View style={styles.inner}>
+    <View style={styles.container}>
+      <ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent}>
+        <View style={styles.hero}>
+          <View style={styles.inner}>
           {/* Brand card */}
           <View style={styles.brandCard}>
             <Text style={styles.brandTitle}>JPrime</Text>
@@ -101,10 +104,26 @@ export default function HomeScreen() {
         </View>
       </View>
 
-      <View style={styles.footer}>
-        <Text style={styles.footerText}>JPrime Conference © 2026</Text>
+          <View style={styles.footer}>
+            <Text style={styles.footerText}>JPrime Conference © 2026</Text>
+          </View>
+        </ScrollView>
+
+        {/* Connect Button - only shown when authenticated */}
+        {isSignedIn && (
+          <Pressable
+            style={({ pressed }) => [
+              styles.connectBtn,
+              { bottom: 24 + insets.bottom },
+              pressed && styles.connectBtnPressed,
+            ]}
+            onPress={() => router.push('/(connections)/scan')}
+          >
+            <Ionicons name="qr-code-outline" size={24} color="#FFFFFF" />
+            <Text style={styles.connectBtnText}>Connect</Text>
+          </Pressable>
+        )}
       </View>
-    </ScrollView>
   );
 }
 
@@ -290,5 +309,31 @@ const styles = StyleSheet.create({
   footerText: {
     fontSize: 12,
     color: "#495057",
+  },
+  connectBtn: {
+    position: 'absolute',
+    right: 24,
+    width: 128,
+    height: 52,
+    backgroundColor: '#E83283',
+    borderRadius: 26,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    shadowColor: '#E83283',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.4,
+    shadowRadius: 15,
+    elevation: 8,
+  },
+  connectBtnPressed: {
+    backgroundColor: '#D71A5C',
+  },
+  connectBtnText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#FFFFFF',
+    fontFamily: 'Poppins-600',
   },
 });

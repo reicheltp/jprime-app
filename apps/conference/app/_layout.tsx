@@ -113,12 +113,18 @@ export default function RootLayout() {
           }}
         />
         <Tabs.Screen
+          name="(connections)"
+          options={{
+            title: "Connect",
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="people-outline" size={size} color={color} />
+            ),
+          }}
+        />
+        <Tabs.Screen
           name="(profile)"
           options={{
-            title: "Profile",
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="person-outline" size={size} color={color} />
-            ),
+            href: null,
           }}
         />
         <Tabs.Screen
