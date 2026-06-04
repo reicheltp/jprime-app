@@ -159,6 +159,65 @@ jprime-app/
 
 ---
 
+## Demo Guide
+
+A quick walkthrough for demoing all features locally.
+
+### 1. Start everything
+
+```bash
+bun run dev
+```
+
+This starts the API server and the Expo dev server in parallel. Open [http://localhost:8081](http://localhost:8081) in your browser (or scan the QR code with Expo Go).
+
+### 2. Seed demo attendees
+
+In a separate terminal:
+
+```bash
+bun run seed
+```
+
+The output lists every demo attendee with their connect code — keep this handy:
+
+```
+  Name               Connect Code
+  ─────────────────  ────────────
+  Georgi Ivanov      X7K2P
+  Maria Petrova      4NR9T
+  ...
+```
+
+### 3. Sign in
+
+Enter any email address on the login screen. Because no SMTP is configured in development, the one-time code is printed directly to the **API server terminal**:
+
+```
+[email] OTP for you@example.com: 847291
+```
+
+Enter that code in the app to sign in.
+
+### 4. Explore the app
+
+| What to try | Where |
+|-------------|-------|
+| Browse sessions by day or track | **Schedule** tab |
+| Bookmark a session | Tap the bookmark icon on any session card |
+| View your bookmarks | **Schedule** → **Bookmarked** filter |
+| Read a speaker bio | **Speakers** tab |
+| Check venue & maps | **Venue** tab |
+
+### 5. Connect with demo attendees
+
+1. Go to the **Connect** tab
+2. Tap **Scan QR** or switch to **Enter Code**
+3. Type one of the connect codes from the seed output (e.g. `X7K2P`)
+4. Tap **Connect** — the attendee appears in your connections list
+
+---
+
 ## Development
 
 ### Scripts
