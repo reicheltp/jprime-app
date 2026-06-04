@@ -1,5 +1,6 @@
 import React from 'react'
-import { View, Text, Pressable } from 'react-native'
+import { View, Text, Pressable, StyleSheet } from 'react-native'
+import { Ionicons } from '@expo/vector-icons'
 import type { Speaker } from '@jprime/types'
 import { SpeakerAvatar } from './SpeakerAvatar'
 
@@ -14,16 +15,46 @@ export const SpeakerCard: React.FC<SpeakerCardProps> = ({ speaker, onPress }) =>
   return (
     <Pressable
       onPress={onPress}
-      className="flex-row items-center glass glass-border rounded-lg p-4 mb-3 active:bg-glass-strong"
+      style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}
     >
       <SpeakerAvatar photoUrl={speaker.photoUrl} name={speaker.fullName} size="sm" />
-      <View className="flex-1 ml-3">
-        <Text className="text-body text-white font-semibold">{speaker.fullName}</Text>
-        <Text className="text-caption text-neutral-400 mt-0.5">
+      <View style={styles.info}>
+        <Text style={styles.name}>{speaker.fullName}</Text>
+        <Text style={styles.sessions}>
           {sessionCount} {sessionCount === 1 ? 'session' : 'sessions'}
         </Text>
       </View>
-      <Text className="text-cyan">›</Text>
+      <Ionicons name="chevron-forward" size={18} color="rgba(255,255,255,0.3)" />
     </Pressable>
   )
 }
+
+const styles = StyleSheet.create({
+  card: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255,255,255,0.07)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.12)',
+    borderRadius: 12,
+    padding: 14,
+    marginBottom: 10,
+    gap: 14,
+  },
+  cardPressed: {
+    backgroundColor: 'rgba(255,255,255,0.11)',
+  },
+  info: {
+    flex: 1,
+  },
+  name: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: '#FFFFFF',
+  },
+  sessions: {
+    fontSize: 12,
+    color: 'rgba(255,255,255,0.45)',
+    marginTop: 3,
+  },
+})

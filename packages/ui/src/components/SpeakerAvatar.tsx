@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, StyleSheet } from 'react-native'
 
 interface SpeakerAvatarProps {
   photoUrl: string | null
@@ -7,10 +7,10 @@ interface SpeakerAvatarProps {
   size?: 'sm' | 'md' | 'lg'
 }
 
-const SIZE_CLASSES: Record<string, { container: string; text: string }> = {
-  sm: { container: 'w-10 h-10', text: 'text-sm' },
-  md: { container: 'w-16 h-16', text: 'text-xl' },
-  lg: { container: 'w-24 h-24', text: 'text-3xl' },
+const SIZES = {
+  sm: { diameter: 44, fontSize: 15 },
+  md: { diameter: 64, fontSize: 22 },
+  lg: { diameter: 112, fontSize: 36 },
 }
 
 function initials(name: string): string {
@@ -30,22 +30,44 @@ export const SpeakerAvatar: React.FC<SpeakerAvatarProps> = ({
   size = 'md',
 }) => {
   const [imgError, setImgError] = useState(false)
-  const sizes = SIZE_CLASSES[size] ?? SIZE_CLASSES['md']!
+  const { diameter, fontSize } = SIZES[size]
   const showImage = photoUrl !== null && !imgError
 
   return (
     <View
-      className={`${sizes.container} rounded-full overflow-hidden bg-primary items-center justify-center`}
+      style={[
+        styles.container,
+        { width: diameter, height: diameter, borderRadius: diameter / 2 },
+      ]}
     >
       {showImage ? (
         <Image
           source={{ uri: photoUrl }}
-          className="w-full h-full"
+          style={styles.image}
           onError={() => setImgError(true)}
         />
       ) : (
-        <Text className={`${sizes.text} text-white font-bold`}>{initials(name)}</Text>
+        <Text style={[styles.initials, { fontSize }]}>{initials(name)}</Text>
       )}
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    overflow: 'hidden',
+    backgroundColor: '#E83283',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 2,
+    borderColor: 'rgba(232,50,131,0.35)',
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+  },
+  initials: {
+    color: '#FFFFFF',
+    fontWeight: '700',
+  },
+})
