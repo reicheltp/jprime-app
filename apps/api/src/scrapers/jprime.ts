@@ -26,6 +26,7 @@ interface JPrimeSession {
  * which return JSON arrays of session objects.
  */
 async function fetchSessions(): Promise<JPrimeSession[]> {
+  const seen = new Set<number>()
   const allSessions: JPrimeSession[] = []
 
   for (const hall of HALLS) {
@@ -42,8 +43,13 @@ async function fetchSessions(): Promise<JPrimeSession[]> {
       throw new Error(`Failed to fetch sessions for ${hall}: ${res.status} ${res.statusText}`)
     }
 
-    const data = await res.json()
-    allSessions.push(...data)
+    const data: JPrimeSession[] = await res.json()
+    for (const session of data) {
+      if (!seen.has(session.id)) {
+        seen.add(session.id)
+        allSessions.push(session)
+      }
+    }
   }
 
   return allSessions
