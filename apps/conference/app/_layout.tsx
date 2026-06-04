@@ -2,6 +2,7 @@ import { Tabs } from "expo-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { StatusBar } from "expo-status-bar";
 import { Ionicons } from "@expo/vector-icons";
+import { AuthProvider } from "../providers/AuthProvider";
 import {
   useFonts,
   Poppins_400Regular,
@@ -50,6 +51,7 @@ export default function RootLayout() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <AuthProvider>
       <StatusBar style="light" />
       <Tabs
         screenOptions={{
@@ -112,6 +114,7 @@ export default function RootLayout() {
           options={{ href: null }}
         />
       </Tabs>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }
