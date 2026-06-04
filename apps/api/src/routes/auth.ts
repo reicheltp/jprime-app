@@ -1,18 +1,15 @@
 import type { Hono } from 'hono'
-import { sign, verify } from 'hono/jwt'
 import { randomUUID } from 'node:crypto'
 import { db, type User, type OtpToken } from '../db/index'
 import { generateOtp, hashOtp } from '../auth/otp'
 import { sendOtpEmail } from '../email/index'
+import { signToken } from '../auth/jwt'
+import { requireAuth } from '../middleware/auth'
 
 const OTP_TTL_MS = 10 * 60 * 1000
 const JWT_TTL_SECONDS = 7 * 24 * 60 * 60
 const OTP_RATE_LIMIT = 3
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-
-function secret(): string {
-  return process.env.JWT_SECRET ?? 'dev-secret-change-in-production'
-}
 
 export function registerAuthRoutes(app: Hono): void {
   // POST /api/v1/auth/otp/request
@@ -94,37 +91,18 @@ export function registerAuthRoutes(app: Hono): void {
       user = { id, email, created_at: now }
     }
 
-    const jwt = await sign(
-      {
-        sub: user.id,
-        email: user.email,
-        iat: Math.floor(now / 1000),
-        exp: Math.floor(now / 1000) + JWT_TTL_SECONDS,
-      },
-      secret(),
-      'HS256'
-    )
+    const jwt = await signToken({
+      sub: user.id,
+      email: user.email,
+      iat: Math.floor(now / 1000),
+      exp: Math.floor(now / 1000) + JWT_TTL_SECONDS,
+    })
 
     return c.json({ data: { token: jwt, user: { id: user.id, email: user.email } } })
   })
 
   // GET /api/v1/auth/me
-  app.get('/api/v1/auth/me', async (c) => {
-    const header = c.req.header('Authorization')
-    const token = header?.startsWith('Bearer ') ? header.slice(7) : null
-
-    if (!token) {
-      return c.json({ error: 'Authorization header required', code: 'UNAUTHORIZED' }, 401)
-    }
-
-    try {
-      const payload = await verify(token, secret(), 'HS256')
-      const sub = typeof payload.sub === 'string' ? payload.sub : null
-      const email = typeof payload.email === 'string' ? payload.email : null
-      if (!sub || !email) throw new Error('Invalid payload')
-      return c.json({ data: { user: { id: sub, email } } })
-    } catch {
-      return c.json({ error: 'Invalid or expired token', code: 'INVALID_TOKEN' }, 401)
-    }
+  app.get('/api/v1/auth/me', requireAuth, (c) => {
+    return c.json({ data: { user: { id: c.get('userId'), email: c.get('userEmail') } } })
   })
 }
