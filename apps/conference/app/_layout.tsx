@@ -66,9 +66,9 @@ export default function RootLayout() {
             backgroundColor: "#1a1d20",
             borderTopColor: "rgba(255, 255, 255, 0.08)",
             borderTopWidth: 1,
-            height: 60,
-            paddingBottom: 8,
-            paddingTop: 4,
+            height: 72,
+            paddingBottom: 12,
+            paddingTop: 8,
           },
           tabBarLabelStyle: {
             fontSize: 11,
