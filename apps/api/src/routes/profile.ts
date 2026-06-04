@@ -2,6 +2,19 @@ import type { Hono } from 'hono'
 import { requireAuth } from '../middleware/auth'
 import { db, type UserWithProfile } from '../db/index'
 
+// Characters allowed in connection codes (excluding similar-looking: 0,1,O,I,L)
+const CONNECT_CODE_CHARS = '23456789ABCDEFGHJKMNPQRSTUVWXYZ'
+const CONNECT_CODE_LENGTH = 5
+
+function generateConnectCode(): string {
+  let code = ''
+  for (let i = 0; i < CONNECT_CODE_LENGTH; i++) {
+    const randomIndex = Math.floor(Math.random() * CONNECT_CODE_CHARS.length)
+    code += CONNECT_CODE_CHARS[randomIndex]
+  }
+  return code
+}
+
 interface ProfileResponse {
   id: string
   email: string
@@ -13,6 +26,7 @@ interface ProfileResponse {
   twitterUrl: string | null
   githubUrl: string | null
   websiteUrl: string | null
+  connectionCode: string | null
 }
 
 function toResponse(u: UserWithProfile): ProfileResponse {
@@ -27,6 +41,7 @@ function toResponse(u: UserWithProfile): ProfileResponse {
     twitterUrl: u.twitter_url,
     githubUrl: u.github_url,
     websiteUrl: u.website_url,
+    connectionCode: u.connection_code,
   }
 }
 
@@ -117,5 +132,94 @@ export function registerProfileRoutes(app: Hono): void {
 
     if (!updated) return c.json({ error: 'User not found', code: 'NOT_FOUND' }, 404)
     return c.json({ data: toResponse(updated) })
+  })
+
+  // GET /api/v1/profile/connect-code - Get user's connection code
+  app.get('/api/v1/profile/connect-code', requireAuth, (c) => {
+    const userId = c.get('userId')
+    const user = db
+      .query<{ connection_code: string | null }, [string]>(`
+        SELECT connection_code FROM users WHERE id = ?
+      `)
+      .get(userId)
+
+    if (!user) return c.json({ error: 'User not found', code: 'NOT_FOUND' }, 404)
+    
+    if (user.connection_code) {
+      return c.json({ data: { code: user.connection_code } })
+    }
+    
+    return c.json({ error: 'No connection code found', code: 'NOT_FOUND' }, 404)
+  })
+
+  // PUT /api/v1/profile/connect-code - Generate connection code for user
+  app.put('/api/v1/profile/connect-code', requireAuth, (c) => {
+    const userId = c.get('userId')
+    const userEmail = c.get('userEmail')
+    
+    // Check if user already has a connection code
+    const existing = db
+      .query<{ connection_code: string | null }, [string]>(`
+        SELECT connection_code FROM users WHERE id = ?
+      `)
+      .get(userId)
+
+    if (existing?.connection_code) {
+      // User already has a code, return it
+      return c.json({ data: { code: existing.connection_code } })
+    }
+
+    // Generate a new unique connection code
+    let code: string
+    let isUnique = false
+    
+    // Try up to 10 times to generate a unique code
+    for (let attempt = 0; attempt < 10; attempt++) {
+      code = generateConnectCode()
+      const existingCode = db
+        .query<{ count: number }, [string]>(`
+          SELECT COUNT(*) as count FROM users WHERE connection_code = ?
+        `)
+        .get(code)
+      
+      if ((existingCode?.count ?? 0) === 0) {
+        isUnique = true
+        break
+      }
+    }
+
+    if (!isUnique) {
+      return c.json({ error: 'Failed to generate unique code, please try again', code: 'SERVER_ERROR' }, 500)
+    }
+
+    // Save the connection code
+    db.query(`
+      UPDATE users SET connection_code = ? WHERE id = ?
+    `).run(code, userId)
+
+    return c.json({ data: { code } })
+  })
+
+  // GET /api/v1/profile/connect-code/check - Check if a code is available
+  app.get('/api/v1/profile/connect-code/check', requireAuth, (c) => {
+    const userId = c.get('userId')
+    const code = c.req.query('code')?.toUpperCase() ?? null
+    
+    if (!code) {
+      return c.json({ error: 'Code is required', code: 'INVALID_REQUEST' }, 400)
+    }
+
+    // Check if code is already in use by someone else
+    const existing = db
+      .query<{ id: string }, [string]>(`
+        SELECT id FROM users WHERE connection_code = ?
+      `)
+      .get(code)
+
+    if (existing && existing.id !== userId) {
+      return c.json({ data: { available: false } })
+    }
+
+    return c.json({ data: { available: true } })
   })
 }

@@ -148,10 +148,9 @@ export default function ConnectionsScreen() {
         <View style={styles.shareInfo}>
           <Text style={styles.shareTitle}>Share to Connect</Text>
           <Text style={styles.shareText}>
-            {userConnectCode 
+            {userConnectCode
               ? `Share your QR code or code: ${userConnectCode.toUpperCase()}`
-              : 'Share your QR code for others to scan'
-            }
+              : 'Share your QR code for others to scan'}
           </Text>
         </View>
         
@@ -205,10 +204,9 @@ export default function ConnectionsScreen() {
             No one has connected with you yet
           </Text>
           <Text style={styles.emptyStateSubtext}>
-            {userConnectCode 
+            {userConnectCode
               ? `Share your code or QR for others to connect`
-              : 'Share your QR code for others to scan'
-            }
+              : 'Share your QR code for others to scan'}
           </Text>
         </View>
       )}

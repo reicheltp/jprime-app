@@ -11,6 +11,7 @@ export interface Profile {
   twitterUrl: string | null
   githubUrl: string | null
   websiteUrl: string | null
+  connectionCode: string | null
 }
 
 export type ProfileUpdate = Omit<Profile, 'id' | 'email'>
