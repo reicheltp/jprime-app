@@ -1,5 +1,7 @@
 import React from 'react'
-import { View, Text, Pressable } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
+import { Ionicons } from '@expo/vector-icons'
+import { Button } from './Button'
 
 interface EmptyStateProps {
   message: string
@@ -11,17 +13,36 @@ interface EmptyStateProps {
 
 export const EmptyState: React.FC<EmptyStateProps> = ({ message, action }) => {
   return (
-    <View className="flex-1 justify-center items-center p-8">
-      <Text className="text-4xl mb-4">📭</Text>
-      <Text className="text-body text-neutral-400 text-center mb-6">{message}</Text>
+    <View style={styles.container}>
+      <Ionicons name="mail-outline" size={48} color="rgba(255,255,255,0.18)" style={styles.icon} />
+      <Text style={styles.message}>{message}</Text>
       {action && (
-        <Pressable
-          onPress={action.onPress}
-          className="px-6 py-3 bg-primary rounded-md min-h-[44px] justify-center"
-        >
-          <Text className="text-white font-medium">{action.label}</Text>
-        </Pressable>
+        <Button variant="secondary" size="md" onPress={action.onPress} style={styles.action}>
+          {action.label}
+        </Button>
       )}
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 32,
+  },
+  icon: {
+    marginBottom: 16,
+  },
+  message: {
+    fontSize: 14,
+    color: 'rgba(255,255,255,0.45)',
+    textAlign: 'center',
+    lineHeight: 22,
+    marginBottom: 24,
+  },
+  action: {
+    minWidth: 160,
+  },
+})
