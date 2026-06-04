@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "conference-web",
+      "runtimeExecutable": "bun",
+      "runtimeArgs": ["run", "--cwd", "apps/conference", "web"],
+      "port": 8081,
+      "autoPort": false
+    }
+  ]
+}
