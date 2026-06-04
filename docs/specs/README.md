@@ -56,7 +56,15 @@ Never start a phase until the previous phase is `approved`.
 
 | ID | Feature | Requirements | Design | Tasks |
 |----|---------|-------------|--------|-------|
-| _(none yet)_ | — | — | — | — |
+| SPEC-001 | Session Browsing | [req](SPEC-001-session-browsing.md) | [design](SPEC-001-session-browsing.design.md) | [tasks](SPEC-001-session-browsing.tasks.md) |
+| SPEC-002 | My Schedule | [req](SPEC-002-my-schedule.md) | [design](SPEC-002-my-schedule.design.md) | [tasks](SPEC-002-my-schedule.tasks.md) |
+| SPEC-003 | Speaker Directory | [req](SPEC-003-speaker-directory.md) | [design](SPEC-003-speaker-directory.design.md) | [tasks](SPEC-003-speaker-directory.tasks.md) |
+| SPEC-004 | Conference Data API | [req](SPEC-004-conference-data-api.md) | [design](SPEC-004-conference-data-api.design.md) | [tasks](SPEC-004-conference-data-api.tasks.md) |
+| SPEC-005 | Venue Information | [req](SPEC-005-venue-information.md) | [design](SPEC-005-venue-information.design.md) | [tasks](SPEC-005-venue-information.tasks.md) |
+| SPEC-006 | Auth — Magic Links | [req](SPEC-006-auth-magic-links.md) | [design](SPEC-006-auth-magic-links.design.md) | [tasks](SPEC-006-auth-magic-links.tasks.md) |
+| SPEC-007 | User Profile | [req](SPEC-007-user-profile.md) | [design](SPEC-007-user-profile.design.md) | [tasks](SPEC-007-user-profile.tasks.md) |
+| SPEC-008 | Attendee Connections | [req](SPEC-008-attendee-connections.md) | [design](SPEC-008-attendee-connections.design.md) | [tasks](SPEC-008-attendee-connections.tasks.md) |
+| SPEC-009 | Connect Codes | [req](SPEC-009-connect-codes.md) | [design](SPEC-009-connect-codes.design.md) | [tasks](SPEC-009-connect-codes.tasks.md) |
 
 Use [SPEC-000-template.md](SPEC-000-template.md) to start a new spec.
 See [../features.md](../features.md) for the full feature status matrix.

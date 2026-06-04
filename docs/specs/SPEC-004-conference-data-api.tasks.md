@@ -3,9 +3,9 @@ id: SPEC-004
 title: Conference Data API Tasks
 feature: conference-data-api
 type: tasks
-status: draft
+status: implemented
 created: 2026-06-03
-updated: 2026-06-03
+updated: 2026-06-04
 ---
 
 # Tasks: Conference Data API

@@ -80,10 +80,11 @@ jprime-app/
 │
 ├── docs/
 │   ├── architecture.md       # Architecture decisions & overview
-│   ├── specs/                # Spec-driven development
-│   │   ├── requirements/     # Feature requirements (EARS format)
-│   │   ├── design/          # Design documents
-│   │   └── tasks/           # Implementation tasks
+│   ├── features.md           # Feature status matrix
+│   ├── specs/                # Spec-driven development (flat)
+│   │   ├── SPEC-NNN-slug.md          # Phase 1: Requirements (EARS format)
+│   │   ├── SPEC-NNN-slug.design.md   # Phase 2: Design document
+│   │   └── SPEC-NNN-slug.tasks.md    # Phase 3: Implementation checklist
 │   └── decisions/           # ADRs (Architecture Decision Records)
 │
 ├── tooling/
@@ -234,7 +235,7 @@ This project follows a **three-phase spec-driven development** workflow to ensur
 
 ### 1. Requirements Phase
 
-- **Location:** `docs/specs/requirements/`
+- **Location:** `docs/specs/SPEC-NNN-slug.md`
 - **Format:** EARS (Easy Approach to Requirements Syntax)
 - **Process:** Define user stories and acceptance criteria before implementation
 
@@ -252,7 +253,7 @@ This project follows a **three-phase spec-driven development** workflow to ensur
 
 ### 2. Design Phase
 
-- **Location:** `docs/specs/design/`
+- **Location:** `docs/specs/SPEC-NNN-slug.design.md`
 - **Process:** Create technical design documents with architecture decisions
 
 **Sections:**
@@ -264,7 +265,7 @@ This project follows a **three-phase spec-driven development** workflow to ensur
 
 ### 3. Tasks Phase
 
-- **Location:** `docs/specs/tasks/`
+- **Location:** `docs/specs/SPEC-NNN-slug.tasks.md`
 - **Process:** Break design into actionable implementation tasks
 
 **Format:**

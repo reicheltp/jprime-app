@@ -3,9 +3,9 @@ id: SPEC-003
 title: Speaker Directory Tasks
 feature: speaker-directory
 type: tasks
-status: draft
+status: implemented
 created: 2026-06-03
-updated: 2026-06-03
+updated: 2026-06-04
 ---
 
 # Tasks: Speaker Directory

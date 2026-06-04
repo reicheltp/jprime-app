@@ -3,9 +3,9 @@ id: SPEC-002
 title: My Schedule Tasks
 feature: my-schedule
 type: tasks
-status: draft
+status: implemented
 created: 2026-06-03
-updated: 2026-06-03
+updated: 2026-06-04
 ---
 
 # Tasks: My Schedule

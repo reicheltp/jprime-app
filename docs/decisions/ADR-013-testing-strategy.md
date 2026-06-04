@@ -2,7 +2,7 @@
 id: ADR-013
 title: Testing Strategy for JPrime Conference App
 type: adr
-status: approved
+status: accepted
 date: 2026-06-03
 deciders:
   - paul@huskycare.de
