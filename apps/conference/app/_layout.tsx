@@ -44,11 +44,13 @@ function useLoadedFonts() {
     }
   }, [fontsLoaded, fontError]);
 
-  return fontsLoaded;
+  // Return true on error so the app doesn't get stuck indefinitely
+  return fontsLoaded || !!fontError;
 }
 
 export default function RootLayout() {
-  useLoadedFonts();
+  const fontsLoaded = useLoadedFonts();
+  if (!fontsLoaded) return null;
 
   return (
     <QueryClientProvider client={queryClient}>
