@@ -2,7 +2,7 @@
 title: Architecture Overview
 description: Decision register and technology snapshot for JPrime Conference App. Full rationale lives in docs/decisions/.
 type: architecture
-last_updated: 2026-06-03
+last_updated: 2026-06-04
 status: active
 ---
 
@@ -26,6 +26,11 @@ Summary of accepted architectural decisions. Each row links to its full ADR (con
 | [ADR-008](decisions/ADR-008-bun-test-testing-strategy.md) | Testing | Bun Test + @testing-library/react-native | 2026-06-03 |
 | [ADR-009](decisions/ADR-009-nativewind-tailwind-styling.md) | Styling | Tailwind CSS v4 via NativeWind v5 + DESIGN.md | 2026-06-03 |
 | [ADR-010](decisions/ADR-010-design-md-design-system.md) | Design System | DESIGN.md as single source of truth | 2026-06-03 |
+| [ADR-011](decisions/ADR-011-hono-api-server.md) | API server framework | Hono on Bun | 2026-06-03 |
+| [ADR-012](decisions/ADR-012-scrape-to-postgres-data-strategy.md) | Conference data sourcing | Web scraping → PostgreSQL (phase 2) | 2026-06-03 |
+| [ADR-013](decisions/ADR-013-testing-strategy.md) | Testing strategy | Bun Test, co-located files, `app.request()` for routes | 2026-06-03 |
+| [ADR-014](decisions/ADR-014-storybook-component-development.md) | Component development | Storybook for `@jprime/ui` isolation | 2026-06-04 |
+| [ADR-015](decisions/ADR-015-self-hosted-otp-auth.md) | Authentication | Self-hosted OTP (Bun SQLite + nodemailer), no third-party auth service | 2026-06-04 |
 
 ## Technology Snapshot
 
@@ -44,9 +49,7 @@ Summary of accepted architectural decisions. Each row links to its full ADR (con
 
 | Topic | Status | Notes |
 |-------|--------|-------|
-| Authentication provider | Pending | Firebase Auth, Auth0, or custom? |
-| Offline database | Pending | WatermelonDB, Realm, etc. |
-| API design | Pending | REST vs GraphQL vs Serverless functions |
+| Offline database | Pending | WatermelonDB, Realm, or SQLite for device-local bookmarks sync |
 | Real-time updates | Pending | WebSockets, Firebase Realtime, or polling? |
 | Analytics | Pending | Provider TBD |
 | Error monitoring | Pending | Sentry, Bugsnag, or custom? |
