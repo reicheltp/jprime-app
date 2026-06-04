@@ -29,6 +29,7 @@ SplashScreen.preventAutoHideAsync();
 
 function useLoadedFonts() {
   const [fontsLoaded, fontError] = useFonts({
+    ...Ionicons.font,
     "Poppins-400": Poppins_400Regular,
     "Poppins-500": Poppins_500Medium,
     "Poppins-600": Poppins_600SemiBold,
