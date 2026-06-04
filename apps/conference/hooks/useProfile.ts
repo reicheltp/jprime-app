@@ -21,7 +21,10 @@ export function useUpdateProfile() {
   const { session } = useAuth()
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (update: ProfileUpdate) => updateProfile(session!.token, update),
+    mutationFn: (update: ProfileUpdate) => {
+      if (!session) throw new Error('Not authenticated')
+      return updateProfile(session.token, update)
+    },
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: [PROFILE_KEY] })
     },

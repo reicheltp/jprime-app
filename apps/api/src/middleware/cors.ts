@@ -13,7 +13,7 @@ export function registerCors(app: Hono): void {
         allowedOrigins.length === 1 && allowedOrigins[0] === '*'
           ? '*'
           : (origin) => (allowedOrigins.includes(origin) ? origin : (allowedOrigins[0] ?? '')),
-      allowMethods: ['GET', 'POST', 'OPTIONS'],
+      allowMethods: ['GET', 'POST', 'PUT', 'OPTIONS'],
       allowHeaders: ['Content-Type', 'Accept', 'Authorization'],
       maxAge: 600,
     })
