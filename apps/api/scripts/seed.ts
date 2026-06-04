@@ -1,6 +1,19 @@
 import { randomUUID } from 'node:crypto'
 import { db } from '../src/db/index'
 
+// Characters allowed in connection codes (excluding similar-looking: 0,1,O,I,L)
+const CONNECT_CODE_CHARS = '23456789ABCDEFGHJKMNPQRSTUVWXYZ'
+const CONNECT_CODE_LENGTH = 5
+
+function generateConnectCode(): string {
+  let code = ''
+  for (let i = 0; i < CONNECT_CODE_LENGTH; i++) {
+    const randomIndex = Math.floor(Math.random() * CONNECT_CODE_CHARS.length)
+    code += CONNECT_CODE_CHARS[randomIndex]
+  }
+  return code
+}
+
 const DEMO_ATTENDEES = [
   { email: 'georgi.ivanov@demo.jprime.io',    displayName: 'Georgi Ivanov',     company: 'Sofia Tech Labs',               bio: 'Backend engineer obsessed with distributed systems and event-driven architecture.',           avatarUrl: 'https://i.pravatar.cc/150?u=georgi-ivanov', linkedinUrl: 'https://linkedin.com/in/georgi-ivanov',     githubUrl: 'https://github.com/givanov' },
   { email: 'maria.petrova@demo.jprime.io',    displayName: 'Maria Petrova',     company: 'Musala Soft',                   bio: 'Java champion & conference speaker. Strong opinions about clean code, loosely held.',      avatarUrl: 'https://i.pravatar.cc/150?u=maria-petrova', linkedinUrl: 'https://linkedin.com/in/maria-petrova',     twitterUrl: 'https://x.com/mariapetrova' },
@@ -38,12 +51,15 @@ const updateStmt = db.prepare(`
     linkedin_url = ?,
     twitter_url  = ?,
     github_url   = ?,
-    website_url  = ?
+    website_url  = ?,
+    connection_code = ?
   WHERE email = ?
 `)
 
 const now = Date.now()
+const seeded: { name: string; code: string }[] = []
 for (const a of DEMO_ATTENDEES) {
+  const connectionCode = generateConnectCode()
   insertStmt.run(randomUUID(), a.email, now)
   updateStmt.run(
     a.displayName ?? null,
@@ -54,8 +70,10 @@ for (const a of DEMO_ATTENDEES) {
     a.twitterUrl ?? null,
     a.githubUrl ?? null,
     a.websiteUrl ?? null,
+    connectionCode,
     a.email,
   )
+  seeded.push({ name: a.displayName, code: connectionCode })
 }
 
 const countAfter = db.query<{ n: number }, []>('SELECT COUNT(*) as n FROM users').get()?.n ?? 0
@@ -65,4 +83,12 @@ const updated = DEMO_ATTENDEES.length - inserted
 console.log('\nSeed complete')
 if (inserted > 0) console.log(`  ${inserted} demo attendees created`)
 if (updated > 0)  console.log(`  ${updated} existing attendees profile data refreshed`)
-console.log(`  Total users in DB: ${countAfter}\n`)
+console.log(`  Total users in DB: ${countAfter}`)
+
+const nameWidth = Math.max(...seeded.map(s => s.name.length), 'Name'.length)
+console.log(`\n  ${'Name'.padEnd(nameWidth)}  Connect Code`)
+console.log(`  ${'─'.repeat(nameWidth)}  ────────────`)
+for (const { name, code } of seeded) {
+  console.log(`  ${name.padEnd(nameWidth)}  ${code}`)
+}
+console.log()

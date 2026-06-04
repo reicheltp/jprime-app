@@ -18,7 +18,8 @@
     "expo:dev": "bun run --cwd apps/conference expo start --dev-client",
     "expo:android": "bun run --cwd apps/conference expo run:android",
     "expo:ios": "bun run --cwd apps/conference expo run:ios",
-    "expo:web": "bun run --cwd apps/conference expo start --web"
+    "expo:web": "bun run --cwd apps/conference expo start --web",
+    "seed": "bun run --cwd apps/api seed"
   },
   "devDependencies": {
     "@types/bun": "latest"

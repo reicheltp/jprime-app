@@ -140,7 +140,20 @@ jprime-app/
    bun run expo:dev
    ```
 
-5. **Open in browser:**
+5. **Seed the database:**
+   ```bash
+   bun run seed
+   ```
+   This creates 20 demo attendees and prints their names and connect codes — useful for testing the attendee connections and connect code features:
+   ```
+   Name               Connect Code
+   ─────────────────  ────────────
+   Georgi Ivanov      X7K2P
+   Maria Petrova      4NR9T
+   ...
+   ```
+
+6. **Open in browser:**
    - Press `w` in terminal to open web version
    - Or navigate to `http://localhost:8081`
 
